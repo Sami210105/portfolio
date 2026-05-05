@@ -13,7 +13,7 @@ import folderResume   from '../../assets/folder-resume.png';
 
 const folders = [
   { id: 'about',   label: 'About Me', icon: folderAbout,   pos: { top: '80px',  left: '60px'  } },
-  { id: 'music',   label: 'Music',    icon: folderMusic,   pos: { top: '220px', left: '60px'  } },
+  { id: 'music',   label: 'My Playlist',    icon: folderMusic,   pos: { top: '220px', left: '60px'  } },
   { id: 'connect', label: 'Connect',  icon: folderConnect, pos: { top: '220px', right: '60px' } },
   { id: 'resume',  label: 'Resume',   icon: folderResume,  pos: { top: '340px', right: '60px' } },
 ];
