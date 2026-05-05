@@ -72,15 +72,6 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## Roadmap
-
-- [ ] Mobile responsiveness
-- [ ] Window minimize animation
-- [ ] Resume PDF viewer window
-- [ ] Contact form in Connect window
-
----
-
 ## Links
 
 - **GitHub**: [github.com/Sami210105/portfolio](https://github.com/Sami210105/portfolio)
