@@ -20,8 +20,8 @@ const Tools = ({ onClose }) => {
         <img src="" alt="vercel"/>
         <img src="" alt="render"/>
         <img src="" alt="nodejs"/>
-        <img src="" alt="cpp"/>
-        <img src="" alt="python"/>
+        <img src="/tools/cpp.png" alt="cpp"/>
+        <img src="/tools/python.png" alt="python"/>
         <img src="" alt="github"/>
         <img src="" alt="vscode"/>
       </div>
