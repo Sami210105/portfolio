@@ -15,11 +15,11 @@ const Tools = ({ onClose }) => {
         <div>
           <h3 className="text-md font-bold mb-3 text-[#351303]">Frontend</h3>
           <div className="flex gap-4 flex-wrap">
-            <img src="" alt="html" className="w-10 h-10 object-contain"/>
-            <img src="" alt="css" className="w-10 h-10 object-contain"/>
-            <img src="" alt="js" className="w-10 h-10 object-contain"/>
-            <img src="" alt="react" className="w-10 h-10 object-contain"/>
-            <img src="" alt="tailwind" className="w-10 h-10 object-contain"/>
+            <img src="tools/html.png" alt="html" className="w-14 h-auto object-contain"/>
+            <img src="tools/css.png" alt="css" className="w-14 h-auto object-contain"/>
+            <img src="tools/js.png" alt="js" className="w-14 h-auto object-contain"/>
+            <img src="tools/react.png" alt="react" className="w-14 h-auto object-contain"/>
+            <img src="tools/tailwind.png" alt="tailwind" className="w-14 h-auto object-contain"/>
           </div>
         </div>
 
@@ -27,10 +27,10 @@ const Tools = ({ onClose }) => {
         <div>
           <h3 className="text-md font-bold mb-3 text-[#351303]">Backend & Database</h3>
           <div className="flex gap-4 flex-wrap">
-            <img src="" alt="mongodb" className="w-10 h-10 object-contain"/>
-            <img src="" alt="sql" className="w-10 h-10 object-contain"/>
-            <img src="" alt="nodejs" className="w-10 h-10 object-contain"/>
-            <img src="" alt="aws" className="w-10 h-10 object-contain"/>
+            <img src="tools/mongodb.png" alt="mongodb" className="w-14 h-auto object-contain"/>
+            <img src="tools/sql.png" alt="sql" className="w-14 h-auto object-contain"/>
+            <img src="tools/nodejs.png" alt="nodejs" className="w-14 h-auto object-contain"/>
+            <img src="tools/aws.png" alt="aws" className="w-14 h-auto object-contain"/>
           </div>
         </div>
 
@@ -38,12 +38,12 @@ const Tools = ({ onClose }) => {
         <div>
           <h3 className="text-md font-bold mb-3 text-[#351303]">Tools & Platforms</h3>
           <div className="flex gap-4 flex-wrap">
-            <img src="" alt="vercel" className="w-10 h-10 object-contain"/>
-            <img src="" alt="render" className="w-10 h-10 object-contain"/>
-            <img src="/tools/cpp.png" alt="cpp" className="w-10 h-10 object-contain"/>
-            <img src="/tools/python.png" alt="python" className="w-10 h-10 object-contain"/>
-            <img src="" alt="github" className="w-10 h-10 object-contain"/>
-            <img src="" alt="vscode" className="w-10 h-10 object-contain"/>
+            <img src="tools/vercel.png" alt="vercel" className="w-14 h-auto object-contain"/>
+            <img src="tools/render.png" alt="render" className="w-14 h-auto object-contain"/>
+            <img src="tools/cpp.png" alt="cpp" className="w-14 h-auto object-contain"/>
+            <img src="tools/python.png" alt="python" className="w-14 h-auto object-contain"/>
+            <img src="tools/github.png" alt="github" className="w-14 h-auto object-contain"/>
+            <img src="tools/vscode.png" alt="vscode" className="w-14 h-auto object-contain"/>
           </div>
         </div>
       </div>
