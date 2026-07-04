@@ -46,6 +46,14 @@ const Tools = ({ onClose }) => {
             <img src="tools/vscode.png" alt="vscode" className="w-14 h-auto object-contain"/>
           </div>
         </div>
+
+        <div className="flex gap-4 flex-wrap">
+          <img src="tools/numpy.png" alt="NumPy" className="w-14 h-auto object-contain"/>
+          <img src="tools/pandas.png" alt="Pandas" className="w-14 h-auto object-contain"/>
+          <img src="tools/scikitlearn.png" alt="Scikit-learn" className="w-14 h-auto object-contain"/>
+          <img src="tools/transformers.png" alt="Transformers" className="w-14 h-auto object-contain"/>
+          <img src="tools/huggingface.png" alt="Hugging Face" className="w-14 h-auto object-contain"/>
+        </div>
       </div>
     </RetroWindow>
   );
