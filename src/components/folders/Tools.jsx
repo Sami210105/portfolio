@@ -55,7 +55,7 @@ const Tools = ({ onClose }) => {
 
           <div className="flex gap-4 flex-wrap">
             <img src="tools/transformer.png" alt="Transformers" className="w-14 h-auto object-contain"/>
-            <img src="tools/pytorch.png" alt="PyTorch" className="w-14 h-auto object-contain"/>
+            <img src="tools/pytorch.png" alt="PyTorch" className="w-12 h-auto object-contain"/>
             <img src="tools/numpy.png" alt="NumPy" className="w-14 h-auto object-contain"/>
             <img src="tools/pandas.png" alt="Pandas" className="w-12 h-auto object-contain"/>
             <img src="tools/sklearn.png" alt="Scikit-learn" className="w-14 h-auto object-contain"/>
