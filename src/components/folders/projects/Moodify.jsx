@@ -1,7 +1,7 @@
 import RetroWindow from "../RetroWindow";
 import Carousel from "./Carousel";
 
-const images = ["/projects/moodify.png"];
+const images = ["/projects/moodify1.png", "/projects/moodify2.png", "/projects/moodify3.png", "/projects/moodify4.png", "/projects/moodify5.png"];
 
 const Moodify = ({ onClose }) => {
   return (
