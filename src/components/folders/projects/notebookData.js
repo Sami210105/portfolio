@@ -1,5 +1,3 @@
-// EDIT ME: swap in real copy, metrics, tech, links and screenshot paths.
-// Image paths follow your existing convention e.g. "/projects/bugganizer1.png"
 export const PROJECTS = [
   {
     id: "scholarpress",
@@ -64,16 +62,5 @@ export const PROJECTS = [
     github: "https://github.com/Sami210105",
     live: "#",
     images: ["/projects/euphoria1.png", "/projects/euphoria2.png"],
-  },
-  {
-    id: "ecell",
-    title: "AISSMS E-Cell",
-    pitch:
-      "Revamped the college Entrepreneurship Cell website, improving layout and content structure for events and team pages.",
-    metrics: ["Forked & customised existing site"],
-    tech: ["JavaScript", "React"],
-    github: "https://github.com/Sami210105",
-    live: "#",
-    images: ["/projects/ecell1.png", "/projects/ecell2.png"],
   },
 ];
