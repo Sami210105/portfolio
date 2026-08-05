@@ -74,7 +74,7 @@ export default function ProjectsPage() {
         {/* notebook */}
         <div
           style={{ perspective: "2200px" }}
-          className="relative w-[92vw] max-w-[820px] h-[62vh] max-h-[520px]"
+          className="relative w-[92vw] max-w-[850px] h-[62vh] max-h-[620px]"
         >
           <RingBinding count={13} />
 
@@ -100,7 +100,7 @@ export default function ProjectsPage() {
                 {/* front face */}
                 <div
                   style={{ backfaceVisibility: "hidden" }}
-                  className="absolute inset-0 bg-[#f0dfcc] border-2 border-black shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden"
+                  className="absolute inset-0 bg-white border-2 border-black shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden"
                 >
                   <div
                     className="absolute inset-0 pointer-events-none"
