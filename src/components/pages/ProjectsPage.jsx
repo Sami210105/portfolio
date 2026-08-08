@@ -100,15 +100,14 @@ export default function ProjectsPage() {
                 {/* front face */}
                 <div
                   style={{ backfaceVisibility: "hidden" }}
-                  className="absolute inset-0 bg-white border-2 border-black shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden"
+                  className="absolute inset-0 bg-[#f5f5f5] border-2 border-black shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden"
                 >
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       backgroundImage:
-                        "linear-gradient(#c9b18f 1px, transparent 1px), linear-gradient(90deg, #c9b18f 1px, transparent 1px)",
-                      backgroundSize: "24px 24px",
-                      opacity: 0.35,
+                        "repeating-linear-gradient(to bottom, black 0px, black 1px, transparent 1px, transparent 28px)",
+                      opacity: 0.25,
                     }}
                   />
                   <div
@@ -130,9 +129,8 @@ export default function ProjectsPage() {
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       backgroundImage:
-                        "linear-gradient(#c9b18f 1px, transparent 1px), linear-gradient(90deg, #c9b18f 1px, transparent 1px)",
-                      backgroundSize: "24px 24px",
-                      opacity: 0.35,
+                        "repeating-linear-gradient(to bottom, black 0px, black 1px, transparent 1px, transparent 28px)",
+                      opacity: 0.25,
                     }}
                   />
                   <div
