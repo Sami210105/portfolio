@@ -1,22 +1,38 @@
 export default function RingBinding({ count = 13 }) {
   return (
-    <div className="absolute -left-4 top-3 bottom-3 w-9 flex flex-col justify-between z-40 pointer-events-none">
+    <div className="absolute -left-7 top-3 bottom-3 w-10 flex flex-col justify-between z-40 pointer-events-none">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="relative w-9 h-5">
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background:
-                "linear-gradient(160deg, #e8c79a 0%, #b9835a 28%, #7a4a26 55%, #5c3419 75%, #8a5a34 100%)",
-              boxShadow:
-                "inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -2px 3px rgba(0,0,0,0.5), 1px 2px 3px rgba(0,0,0,0.4)",
-            }}
+        <svg
+          key={i}
+          width="40"
+          height="24"
+          viewBox="0 0 40 24"
+          className="overflow-visible rotate-x-20 rotate-y-10"
+        >
+          <defs>
+            <linearGradient
+              id={`ring-grad-${i}`}
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor="#e8c79a" />
+              <stop offset="30%" stopColor="#b9835a" />
+              <stop offset="55%" stopColor="#7a4a26" />
+              <stop offset="75%" stopColor="#5c3419" />
+              <stop offset="100%" stopColor="#8a5a34" />
+            </linearGradient>
+          </defs>
+
+          <path
+            d="M 36 5 A 16 9 0 1 0 27 20"
+            fill="none"
+            stroke={`url(#ring-grad-${i})`}
+            strokeWidth="4"
+            strokeLinecap="round"
           />
-          <div
-            className="absolute rounded-full"
-            style={{ inset: "5px 9px", background: "#f0dfcc" }}
-          />
-        </div>
+        </svg>
       ))}
     </div>
   );

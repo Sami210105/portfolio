@@ -21,7 +21,7 @@ const AboutMe = ({ onClose }) => {
             Full-Stack Developer
           </p>
           <p className="text-sm text-[#573c27] leading-relaxed m-0 text-left">
-            3rd year CS Engineering student. I live in React, dabble in ML, and
+            4th year CS Engineering student. I live in React, dabble in ML, and
             think pixel art is a valid life choice.
           </p>
         </div>
