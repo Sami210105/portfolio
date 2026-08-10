@@ -13,7 +13,7 @@ export const PROJECTS = [
     tech: ["React", "FastAPI", "FAISS", "Python"],
     github: "https://github.com/Sami210105",
     live: "#",
-    images: ["/projects/scholarpress1.png", "/projects/scholarpress2.png"],
+    images: ["/projects/scholar-press1.png", "/projects/scholar-press2.png"],
   },
   {
     id: "moodify",
