@@ -10,7 +10,7 @@ export default function RingBinding({ count = 13 }) {
           className="overflow-visible rotate-x-20 rotate-y-10"
         >
           <path
-            d="M 40 4 A 15 9 0 1 0 23 23"
+            d="M 42 4 A 15 9 0 1 0 23 23"
             fill="none"
             stroke="#8B5A2B"
             strokeWidth="4"

@@ -25,8 +25,9 @@ export default function ProjectsPage() {
       if (!wrapRef.current) return;
       const rect = wrapRef.current.getBoundingClientRect();
       const vh = window.innerHeight;
-      const scrolled = Math.min(Math.max(-rect.top, 0), rect.height - vh);
-      const p = scrolled / vh;
+      const maxScroll = rect.height - vh;
+      const scrolled = Math.min(Math.max(-rect.top, 0), maxScroll);
+      const p = maxScroll > 0 ? scrolled / vh : 0;
       setProgress(Math.min(Math.max(p, 0), PROJECTS.length - 1 + 0.999));
     };
 
@@ -52,10 +53,16 @@ export default function ProjectsPage() {
   return (
     <div
       ref={wrapRef}
-      style={{ height: `${PROJECTS.length * 100}vh` }}
+      style={{
+        height: `${PROJECTS.length * 100}vh`,
+        scrollSnapType: "y mandatory",
+      }}
       className="relative w-full"
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+      <div
+        style={{ scrollSnapAlign: "start" }}
+        className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden"
+      >
         {/* left-edge tabs (kept opposite the flip's leading edge) */}
         <div className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-1 z-30">
           {PROJECTS.map((p, i) => (
@@ -74,17 +81,23 @@ export default function ProjectsPage() {
         {/* notebook */}
         <div
           style={{ perspective: "2200px" }}
-          className="relative w-[92vw] max-w-[850px] h-[62vh] max-h-[620px]"
+          className="relative w-[92vw] max-w-[850px] h-[62vh] max-h-[620px] isolate"
         >
           <RingBinding count={13} />
 
           {PROJECTS.map((project, i) => {
             let rotateY = 0;
             const z = PROJECTS.length - i;
-            if (i < currentIndex) rotateY = -180;
-            if (i === currentIndex) rotateY = -local * 180;
+            const isLastPage = i === PROJECTS.length - 1;
 
-            const shade = i === currentIndex ? Math.sin(local * Math.PI) : 0;
+            if (i < currentIndex) rotateY = -180;
+            // The last page has nothing behind it to reveal, so it must
+            // never flip — otherwise scrolling through its final 100vh
+            // segment rotates it away and leaves blank space.
+            if (i === currentIndex && !isLastPage) rotateY = -local * 180;
+
+            const shade =
+              i === currentIndex && !isLastPage ? Math.sin(local * Math.PI) : 0;
 
             return (
               <div
@@ -110,14 +123,16 @@ export default function ProjectsPage() {
                       opacity: 0.25,
                     }}
                   />
+
                   <div
                     className="absolute inset-0 pointer-events-none bg-black"
                     style={{ opacity: shade * 0.25 }}
                   />
+
                   <ProjectFace project={project} />
                 </div>
 
-                {/* back face (blank paper, seen mid-flip) */}
+                {/* back face */}
                 <div
                   style={{
                     backfaceVisibility: "hidden",
@@ -133,6 +148,7 @@ export default function ProjectsPage() {
                       opacity: 0.25,
                     }}
                   />
+
                   <div
                     className="absolute inset-0 pointer-events-none bg-black"
                     style={{ opacity: shade * 0.25 }}
@@ -141,11 +157,12 @@ export default function ProjectsPage() {
               </div>
             );
           })}
-        </div>
 
-        {/* page indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-[#573c27] bg-[#e2c7aa] border-2 border-black px-3 py-1 z-30">
-          {Math.min(activeTab + 1, PROJECTS.length)} / {PROJECTS.length} — scroll to flip
+          {/* PAGE INDICATOR */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-[#573c27] bg-[#e2c7aa] border-2 border-black px-3 py-1 z-[999] pointer-events-none">
+            {Math.min(activeTab + 1, PROJECTS.length)} / {PROJECTS.length} —
+            scroll to flip
+          </div>
         </div>
       </div>
     </div>
