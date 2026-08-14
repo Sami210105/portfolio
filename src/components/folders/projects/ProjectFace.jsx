@@ -2,7 +2,7 @@ import Polaroid from "./Polaroid";
 
 export default function ProjectFace({ project }) {
   return (
-    <div className="w-full h-full grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 p-6 md:p-8">
+    <div className="w-full h-full grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-6 p-6 md:p-8">
       <div className="relative flex items-start justify-center pt-4">
         {project.images.map((src, i) => (
           <Polaroid key={i} src={src} alt={project.title} index={i} />

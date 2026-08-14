@@ -63,8 +63,8 @@ export default function ProjectsPage() {
         style={{ scrollSnapAlign: "start" }}
         className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden"
       >
-        {/* left-edge tabs (kept opposite the flip's leading edge) */}
-        <div className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-1 z-30">
+        {/* left-edge tabs */}
+        <div className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-1 z-30 ">
           {PROJECTS.map((p, i) => (
             <button
               key={p.id}
@@ -81,7 +81,7 @@ export default function ProjectsPage() {
         {/* notebook */}
         <div
           style={{ perspective: "2200px" }}
-          className="relative w-[92vw] max-w-[850px] h-[62vh] max-h-[620px] isolate"
+          className="relative w-[100vw] max-w-[900px] h-[70vh] max-h-[620px] isolate -top-10"
         >
           <RingBinding count={13} />
 
@@ -91,9 +91,6 @@ export default function ProjectsPage() {
             const isLastPage = i === PROJECTS.length - 1;
 
             if (i < currentIndex) rotateY = -180;
-            // The last page has nothing behind it to reveal, so it must
-            // never flip — otherwise scrolling through its final 100vh
-            // segment rotates it away and leaves blank space.
             if (i === currentIndex && !isLastPage) rotateY = -local * 180;
 
             const shade =
