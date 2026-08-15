@@ -8,7 +8,7 @@ export default function Polaroid({ src, alt, index }) {
         marginTop: index === 1 ? "120px" : "0px",
         marginLeft: index === 1 ? "-90px" : "0px",
       }}
-      className="relative bg-white border-4 border-white shadow-[0_4px_10px_rgba(0,0,0,0.35)] w-[280px] top-18 left-8"
+      className="relative bg-white border-4 border-white shadow-[0_4px_10px_rgba(0,0,0,0.35)] w-[280px] top-20 left-10"
     >
       <div
         style={{ transform: `translateX(-50%) rotate(${index === 0 ? "-4deg" : "3deg"})` }}
