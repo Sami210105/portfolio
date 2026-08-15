@@ -139,7 +139,7 @@ export default function ProjectsPage() {
                     <ProjectFace project={project} />
 
                     {/* Indicator */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-mono text-[#573c27] px-3 py-1 z-20 pointer-events-none text-center">
+                    <div className="absolute bottom-4 left-60 text-xs font-mono text-[#573c27] px-3 py-1 z-20 pointer-events-none text-center">
                       {i + 1} / {PROJECTS.length}
                       <p className="text-[12px] mt-1">scroll to flip</p>
                     </div>
