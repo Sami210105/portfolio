@@ -23,6 +23,11 @@ export default function App() {
       {/* Animated Background */}
       <Square squareSize={32} speed={0.15} direction="diagonal" />
 
+      {/*
+        Scroll-snap was tried here and reverted — it conflicts with
+        ProjectsPage's continuous-scroll flip animation (which needs
+        every intermediate scroll position, not just fixed rest points).
+      */}
       <div className="relative z-10 w-full h-full pb-16 overflow-auto">
         {renderPage()}
       </div>
