@@ -8,12 +8,13 @@ const FRAMES = Array.from(
 
 const THOUGHTS = [
   "bamboo... where's the bamboo",
-  "“hmm... should we hire her?”",
-  "“She codes. She paints. She sleeps sometimes.”",
-  "hire me? or don't. i'm a panda.",
-  "“Welcome to Samidha.exe.”",
-  "“This website has more personality than most websites.”",
-  "“I like her. She seems nice.”",
+  "Hire me? or don't. i'm a panda.",
+  "“This website has more personality than you.”",
+  "welcome to my little corner of the internet",
+  "hi hi :)",
+  "make yourself at home",
+  "you found me!",
+  "this seemed like a good idea at 2am",
 ];
 
 function ThoughtBubble({ children, width = 140 }) {
@@ -48,53 +49,120 @@ function ThoughtBubble({ children, width = 140 }) {
   );
 }
 
-export default function PandaIcon({ size = 64, fps = 24 }) {
+export default function PandaIcon({
+  size = 64,
+  fps = 24,
+  reactTo = null,
+  reactions = {},
+  selfBubblePos = "-top-12 -right-18",
+  reactionBubblePos = "-top-12 left-18 -translate-x-1/2",
+}) {
   const [frameIndex, setFrameIndex] = useState(0);
   const [thought, setThought] = useState("");
   const [showBubble, setShowBubble] = useState(false);
+  const [bubbleSource, setBubbleSource] = useState(null); // "self" | "reaction"
   const intervalRef = useRef(null);
+  const selfHoverRef = useRef(false);
+  const [framesReady, setFramesReady] = useState(false);
 
   const clearAnim = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = null;
   };
 
-  const playForwardOnce = () => {
+  const animateTo = (target, onComplete) => {
     clearAnim();
-    setShowBubble(false);
     intervalRef.current = setInterval(() => {
       setFrameIndex((i) => {
-        if (i >= FRAMES.length - 1) {
+        if (i === target) {
           clearAnim();
-          setThought(THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)]);
-          setShowBubble(true);
+          onComplete?.();
           return i;
         }
-        return i + 1;
+        return i < target ? i + 1 : i - 1;
       });
     }, 1000 / fps);
   };
 
-  const playBackwardToStart = () => {
-    clearAnim();
+  const playForwardOnce = (customThought) => {
     setShowBubble(false);
-    intervalRef.current = setInterval(() => {
-      setFrameIndex((i) => {
-        if (i <= 0) {
-          clearAnim();
-          return 0;
-        }
-        return i - 1;
-      });
-    }, 1000 / fps);
+    animateTo(FRAMES.length - 1, () => {
+      setThought(
+        customThought ?? THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)],
+      );
+      setBubbleSource("self");
+      setShowBubble(true);
+    });
+  };
+
+  const playBackwardToStart = () => {
+    setShowBubble(false);
+    animateTo(0);
   };
 
   useEffect(() => clearAnim, []);
 
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      FRAMES.map(
+        (src) =>
+          new Promise((resolve) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = resolve;
+            img.onerror = resolve; // don't block forever on one bad frame
+          }),
+      ),
+    ).then(() => {
+      if (!cancelled) setFramesReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  useEffect(() => {
+    if (!framesReady) return;
+    if (selfHoverRef.current) return;
+    setShowBubble(false);
+
+    if (reactTo) {
+      const line = reactions[reactTo];
+      const text =
+        (Array.isArray(line)
+          ? line[Math.floor(Math.random() * line.length)]
+          : line) ?? THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)];
+
+      animateTo(0, () => {
+        setThought(text);
+        setBubbleSource("reaction");
+        setShowBubble(true);
+      });
+    } else {
+      animateTo(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reactTo, framesReady]);
+
+  const handleSelfEnter = () => {
+    if (!framesReady) return;
+    selfHoverRef.current = true;
+    playForwardOnce(); // full animation + random custom thought
+  };
+
+  const handleSelfLeave = () => {
+    selfHoverRef.current = false;
+    playBackwardToStart();
+  };
+
   return (
     <div className="relative inline-block">
       {showBubble && (
-        <div className="absolute -top-12 -right-18 z-10 pointer-events-none">
+        <div
+          className={`absolute z-10 pointer-events-none ${
+            bubbleSource === "self" ? selfBubblePos : reactionBubblePos
+          }`}
+        >
           <ThoughtBubble width={140}>{thought}</ThoughtBubble>
         </div>
       )}
@@ -103,8 +171,8 @@ export default function PandaIcon({ size = 64, fps = 24 }) {
         src={FRAMES[frameIndex]}
         alt="Panda"
         draggable={false}
-        onMouseEnter={playForwardOnce}
-        onMouseLeave={playBackwardToStart}
+        onMouseEnter={handleSelfEnter}
+        onMouseLeave={handleSelfLeave}
         style={{ width: size, height: "auto" }}
         className="select-none cursor-pointer object-contain"
       />
