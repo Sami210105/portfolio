@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FolderIcon from '../folders/FolderIcon';
+import Panda from '../folders/Panda';
 
 import AboutMe    from '../folders/Aboutme';
 import Connect    from '../folders/Connect';
@@ -47,6 +48,10 @@ const HomePage = () => {
           />
         </div>
       ))}
+
+      <div className="absolute bottom-3 left-2 z-50">
+        <Panda size={300} fps={12} />
+      </div>
 
       {openWindow && (
         <>
