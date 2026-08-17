@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FolderIcon from '../folders/FolderIcon';
 import Panda from '../folders/Panda';
+import StickyNote from '../folders/StickyNote';
 
 import AboutMe    from '../folders/Aboutme';
 import Connect    from '../folders/Connect';
@@ -95,6 +96,10 @@ const HomePage = () => {
         </div>
       ))}
 
+      {/* sticky-note */}
+      <StickyNote initialX={200} initialY={145} onClose={() => setShowNote(false)} />
+
+      {/* panda */}
       <div className="absolute bottom-3 left-2 z-[9999]">
         <Panda
           size={300}
