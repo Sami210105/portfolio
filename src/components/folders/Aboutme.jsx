@@ -5,7 +5,8 @@ const AboutMe = ({ onClose }) => {
     <RetroWindow
       title="about_me.txt"
       onClose={onClose}
-      defaultPos={{ x: 180, y: 150 }}
+      defaultPos={{ x: 200, y: 200 }}
+      disableCenter
     >
       <div className="p-5 flex gap-10 mt-4 mb-4 mr-4">
         <div className="flex items-center justify-center">

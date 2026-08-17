@@ -8,6 +8,7 @@ import Connect    from '../folders/Connect';
 import Music      from '../folders/Music';
 import Resume     from '../folders/Resume';
 import Tools      from '../folders/Tools';
+import Terminal   from '../folders/Terminal'; 
 
 import folderAbout    from '../../assets/folder-about.png';
 import folderMusic    from '../../assets/folder-music.png';
@@ -63,6 +64,7 @@ const PANDA_REACTIONS = {
 const HomePage = () => {
   const [openWindow, setOpenWindow] = useState('about');
   const [hoveredFolder, setHoveredFolder] = useState(null);
+  const [showNote, setShowNote] = useState(true);
   const close = () => setOpenWindow(null);
 
   const renderWindow = () => {
@@ -96,11 +98,20 @@ const HomePage = () => {
         </div>
       ))}
 
-      {/* sticky-note */}
-      <StickyNote initialX={200} initialY={145} onClose={() => setShowNote(false)} />
+      {/* sticky-note*/}
+      {showNote && (
+        <StickyNote initialX={950} initialY={60} onClose={() => setShowNote(false)} />
+      )}
+
+      {/* terminal*/}
+      <Terminal
+        defaultPos={{ x: 850, y: 300 }}
+        onOpenWindow={(id) => setOpenWindow(id)}
+        onClose={() => {}}
+      />
 
       {/* panda */}
-      <div className="absolute bottom-3 left-2 z-[9999]">
+      <div className="fixed bottom-3 left-4 z-50">
         <Panda
           size={300}
           fps={12}

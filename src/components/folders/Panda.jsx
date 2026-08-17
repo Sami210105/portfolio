@@ -62,25 +62,42 @@ export default function PandaIcon({
   const [showBubble, setShowBubble] = useState(false);
   const [bubbleSource, setBubbleSource] = useState(null); // "self" | "reaction"
   const intervalRef = useRef(null);
+  const frameRef = useRef(0);
   const selfHoverRef = useRef(false);
   const [framesReady, setFramesReady] = useState(false);
 
   const clearAnim = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
   };
 
+  const setFrame = (frame) => {
+    frameRef.current = frame;
+    setFrameIndex(frame);
+  };
+
+  // Reads/writes frameRef directly instead of a setState updater, so
+  // onComplete and clearAnim never run inside React's state-update cycle.
   const animateTo = (target, onComplete) => {
     clearAnim();
+
+    if (frameRef.current === target) {
+      onComplete?.();
+      return;
+    }
+
     intervalRef.current = setInterval(() => {
-      setFrameIndex((i) => {
-        if (i === target) {
-          clearAnim();
-          onComplete?.();
-          return i;
-        }
-        return i < target ? i + 1 : i - 1;
-      });
+      const current = frameRef.current;
+
+      if (current === target) {
+        clearAnim();
+        onComplete?.();
+        return;
+      }
+
+      setFrame(current < target ? current + 1 : current - 1);
     }, 1000 / fps);
   };
 
@@ -101,6 +118,7 @@ export default function PandaIcon({
   };
 
   useEffect(() => clearAnim, []);
+
 
   useEffect(() => {
     let cancelled = false;
@@ -170,6 +188,7 @@ export default function PandaIcon({
       <img
         src={FRAMES[frameIndex]}
         alt="Panda"
+        data-panda-hitbox
         draggable={false}
         onMouseEnter={handleSelfEnter}
         onMouseLeave={handleSelfLeave}

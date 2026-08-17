@@ -4,8 +4,8 @@ const TITLE = "note.txt";
 const INTRO = "Things I should probably finish:";
 const DEFAULT_ITEMS = [
   { id: "1", label: "build cool things", checked: true },
-  { id: "2", label: "learn AIML", checked: true },
-  { id: "3", label: "drink water", checked: false },
+  { id: "2", label: "learn AIML", checked: false },
+  { id: "3", label: "drink water", checked: true },
   { id: "4", label: "break something", checked: false },
   { id: "5", label: "fix it", checked: false },
 ];
@@ -38,9 +38,9 @@ function Checkbox({ checked }) {
 
 export default function StickyNote({
   width = 220,
-  initialX = 60,
+  initialX = 300,
   initialY = 60,
-  onClose = null, // pass a fn to wire up the X already drawn on the image
+  onClose = null, 
 }) {
   const [items, setItems] = useState(DEFAULT_ITEMS);
   const [pos, setPos] = useState({ x: initialX, y: initialY });
