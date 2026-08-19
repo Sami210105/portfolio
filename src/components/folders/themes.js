@@ -9,15 +9,15 @@ export const BACKGROUNDS = [
     id: "purple-night",
     name: "Purple Night",
     type: "image",
-    preview: "/backgrounds/bg-purple-night.png",
-    image: "/backgrounds/bg-purple-night.png",
+    preview: "/backgrounds/ghibli-bg.jpg",
+    image: "/backgrounds/ghibli-bg.jpg",
   },
   {
     id: "ocean-blue",
     name: "Ocean Blue",
     type: "image",
-    preview: "/backgrounds/bg-ocean-blue.png",
-    image: "/backgrounds/bg-ocean-blue.png",
+    preview: "/backgrounds/day-bg.jpg",
+    image: "/backgrounds/day-bg.jpg",
   },
 ];
 
