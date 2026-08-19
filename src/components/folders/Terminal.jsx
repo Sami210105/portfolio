@@ -57,7 +57,7 @@ const Terminal = ({ onOpenWindow, onClose, defaultPos }) => {
           "> hi ;) sam here",
           "> developer",
           "> coffee lover",
-          "> mind keeps hovering between earth and stars",
+          "> mind hovers between earth and stars",
           "> still figuring out my love for coding",
           "> i forget things. a lot.",
         ];

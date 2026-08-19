@@ -1,27 +1,54 @@
-import React, { useState } from 'react';
-import FolderIcon from '../folders/FolderIcon';
-import Panda from '../folders/Panda';
-import StickyNote from '../folders/StickyNote';
+import React, { useState } from "react";
+import FolderIcon from "../folders/FolderIcon";
+import Panda from "../folders/Panda";
+import StickyNote from "../folders/StickyNote";
 
-import AboutMe    from '../folders/Aboutme';
-import Connect    from '../folders/Connect';
-import Music      from '../folders/Music';
-import Resume     from '../folders/Resume';
-import Tools      from '../folders/Tools';
-import Terminal   from '../folders/Terminal'; 
+import AboutMe from "../folders/Aboutme";
+import Connect from "../folders/Connect";
+import Music from "../folders/Music";
+import Resume from "../folders/Resume";
+import Tools from "../folders/Tools";
+import Terminal from "../folders/Terminal";
+import ContextMenu from "../folders/ContextMenu";
+import PersonalizeWindow from "../folders/PersonalizeWindow";
 
-import folderAbout    from '../../assets/folder-about.png';
-import folderMusic    from '../../assets/folder-music.png';
-import folderConnect  from '../../assets/folder-connect.png';
-import folderResume   from '../../assets/folder-resume.png';
-import folderTools from '../../assets/folder-resume.png';
+import folderAbout from "../../assets/folder-about.png";
+import folderMusic from "../../assets/folder-music.png";
+import folderConnect from "../../assets/folder-connect.png";
+import folderResume from "../../assets/folder-resume.png";
+import folderTools from "../../assets/folder-resume.png";
 
 const folders = [
-  { id: 'about',   label: 'About Me', icon: folderAbout,   pos: { top: '80px',  left: '60px'  } },
-  { id: 'music',   label: 'My Playlist',    icon: folderMusic,   pos: { top: '220px', left: '60px'  } },
-  { id: 'connect', label: 'Connect',  icon: folderConnect, pos: { top: '220px', right: '60px' } },
-  { id: 'resume',  label: 'Resume',   icon: folderResume,  pos: { top: '340px', right: '60px' } },
-  { id: 'tools', label: 'Tools', icon:folderTools, pos: { top: '460px', right: '60px' }},
+  {
+    id: "about",
+    label: "About Me",
+    icon: folderAbout,
+    pos: { top: "80px", left: "60px" },
+  },
+  {
+    id: "music",
+    label: "My Playlist",
+    icon: folderMusic,
+    pos: { top: "220px", left: "60px" },
+  },
+  {
+    id: "connect",
+    label: "Connect",
+    icon: folderConnect,
+    pos: { top: "220px", right: "60px" },
+  },
+  {
+    id: "resume",
+    label: "Resume",
+    icon: folderResume,
+    pos: { top: "340px", right: "60px" },
+  },
+  {
+    id: "tools",
+    label: "Tools",
+    icon: folderTools,
+    pos: { top: "460px", right: "60px" },
+  },
 ];
 
 const PANDA_REACTIONS = {
@@ -62,25 +89,43 @@ const PANDA_REACTIONS = {
 };
 
 const HomePage = () => {
-  const [openWindow, setOpenWindow] = useState('about');
+  const [openWindow, setOpenWindow] = useState("about");
   const [hoveredFolder, setHoveredFolder] = useState(null);
   const [showNote, setShowNote] = useState(true);
+  const [contextMenu, setContextMenu] = useState(null); // { x, y } | null
+  const [showPersonalize, setShowPersonalize] = useState(false);
   const close = () => setOpenWindow(null);
 
   const renderWindow = () => {
     switch (openWindow) {
-      case 'about':    return <AboutMe  onClose={close} />;
-      case 'music':    return <Music    onClose={close} />;
-      case 'connect':  return <Connect  onClose={close} />;
-      case 'resume':   return <Resume   onClose={close} />;
-      case 'tools':   return <Tools   onClose={close} />;
-      default: return null;
+      case "about":
+        return <AboutMe onClose={close} />;
+      case "music":
+        return <Music onClose={close} />;
+      case "connect":
+        return <Connect onClose={close} />;
+      case "resume":
+        return <Resume onClose={close} />;
+      case "tools":
+        return <Tools onClose={close} />;
+      default:
+        return null;
     }
   };
 
+  const handleDesktopContextMenu = (e) => {
+    // only trigger on empty desktop space, not on folders/windows/terminal
+    if (e.target !== e.currentTarget) return;
+    e.preventDefault();
+    setContextMenu({ x: e.clientX, y: e.clientY });
+  };
+
   return (
-    <div className="relative w-full h-screen">
-      {folders.map(f => (
+    <div
+      className="relative w-full h-screen"
+      onContextMenu={handleDesktopContextMenu}
+    >
+      {folders.map((f) => (
         <div
           key={f.id}
           className="absolute z-30"
@@ -100,7 +145,11 @@ const HomePage = () => {
 
       {/* sticky-note*/}
       {showNote && (
-        <StickyNote initialX={950} initialY={60} onClose={() => setShowNote(false)} />
+        <StickyNote
+          initialX={950}
+          initialY={60}
+          onClose={() => setShowNote(false)}
+        />
       )}
 
       {/* terminal*/}
@@ -122,9 +171,30 @@ const HomePage = () => {
 
       {openWindow && (
         <>
-          <div className="fixed inset-0 z-20" onClick={close} />
+          <div
+            className="fixed inset-0 z-20"
+            onClick={close}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              setContextMenu({ x: e.clientX, y: e.clientY });
+            }}
+          />
           {renderWindow()}
         </>
+      )}
+
+      {contextMenu && (
+        <ContextMenu
+          x={contextMenu.x}
+          y={contextMenu.y}
+          onClose={() => setContextMenu(null)}
+          onPersonalize={() => setShowPersonalize(true)}
+          onRefresh={() => window.location.reload()}
+        />
+      )}
+
+      {showPersonalize && (
+        <PersonalizeWindow onClose={() => setShowPersonalize(false)} />
       )}
     </div>
   );

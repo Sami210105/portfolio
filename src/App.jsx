@@ -4,9 +4,13 @@ import Taskbar from "./components/taskbar/Taskbar";
 import HomePage from "./components/pages/HomePage";
 import ProjectsPage from "./components/pages/ProjectsPage";
 import AchievementsPage from "./components/pages/AchievementsPage";
+import { useDesktopTheme } from "./components/folders/ThemeContext";
+import { BACKGROUNDS } from "./components/folders/themes";
 
 export default function App() {
   const [activePage, setActivePage] = useState("home");
+  const { settings } = useDesktopTheme();
+  const bg = BACKGROUNDS.find((b) => b.id === settings.backgroundId) ?? BACKGROUNDS[0];
 
   const renderPage = () => {
     switch (activePage) {
@@ -20,14 +24,16 @@ export default function App() {
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#e7d7c1]">
 
-      {/* Animated Background */}
-      <Square squareSize={32} speed={0.15} direction="diagonal" />
+      {/* Background: animated grid or static image */}
+      {bg.type === "component" ? (
+        <Square squareSize={32} speed={0.15} direction="diagonal" />
+      ) : (
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${bg.image})` }}
+        />
+      )}
 
-      {/*
-        Scroll-snap was tried here and reverted — it conflicts with
-        ProjectsPage's continuous-scroll flip animation (which needs
-        every intermediate scroll position, not just fixed rest points).
-      */}
       <div className="relative z-10 w-full h-full pb-16 overflow-auto">
         {renderPage()}
       </div>
