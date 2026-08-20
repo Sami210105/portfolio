@@ -7,13 +7,12 @@ const Tools = ({ onClose }) => {
       onClose={onClose}
       defaultPos={{ x: 180, y: 150 }}
     >
-      <h1 className="text-sm font-bold text-[#351303] ml-2 mt-1">
+      <h1 className="text-sm font-bold text-[var(--window-body-text)] ml-2 mt-1">
         Weapons of choice! The stack behind my work.
       </h1>
       <div className="space-y-6 mt-4 px-3">
-        {/* Frontend */}
         <div>
-          <h3 className="text-md font-bold mb-3 text-[#351303]">Frontend</h3>
+          <h3 className="text-md font-bold mb-3 text-[var(--window-body-text)]">Frontend</h3>
           <div className="flex gap-4 flex-wrap">
             <img src="tools/html.png" alt="html" className="w-12 h-auto object-contain"/>
             <img src="tools/css.png" alt="css" className="w-10 h-auto object-contain"/>
@@ -23,9 +22,8 @@ const Tools = ({ onClose }) => {
           </div>
         </div>
 
-        {/* Backend */}
         <div>
-          <h3 className="text-md font-bold mb-3 text-[#351303]">Backend & Database</h3>
+          <h3 className="text-md font-bold mb-3 text-[var(--window-body-text)]">Backend & Database</h3>
           <div className="flex gap-4 flex-wrap">
             <img src="tools/mongodb.png" alt="mongodb" className="w-12 h-auto object-contain"/>
             <img src="tools/sql.png" alt="sql" className="w-12 h-auto object-contain"/>
@@ -34,9 +32,8 @@ const Tools = ({ onClose }) => {
           </div>
         </div>
 
-        {/* Tools */}
         <div>
-          <h3 className="text-md font-bold mb-3 text-[#351303]">Tools & Platforms</h3>
+          <h3 className="text-md font-bold mb-3 text-[var(--window-body-text)]">Tools & Platforms</h3>
           <div className="flex gap-4 flex-wrap">
             <img src="tools/vercel.png" alt="vercel" className="w-12 h-auto object-contain"/>
             <img src="tools/render.png" alt="render" className="w-12 h-auto object-contain"/>
@@ -47,12 +44,10 @@ const Tools = ({ onClose }) => {
           </div>
         </div>
 
-        {/* Recent ML Learnings */}
         <div>
-          <h3 className="text-md font-bold mb-3 text-[#351303]">
+          <h3 className="text-md font-bold mb-3 text-[var(--window-body-text)]">
             ML toolkit
           </h3>
-
           <div className="flex gap-4 flex-wrap">
             <img src="tools/transformer.png" alt="Transformers" className="w-14 h-auto object-contain"/>
             <img src="tools/pytorch.png" alt="PyTorch" className="w-12 h-auto object-contain"/>

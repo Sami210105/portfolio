@@ -86,8 +86,8 @@ const Music = ({ onClose }) => {
       />
 
       {/* NOW PLAYING */}
-      <div className="mx-3 mt-3 border-t-2 border-l-2 border-[#555] border-b-2 border-r-2 border-b-white border-r-white bg-[#f0dfcc] p-3">
-        <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2 font-bold">
+      <div className="mx-3 mt-3 border-t-2 border-l-2 border-[var(--window-border-dark)] border-b-2 border-r-2 border-b-[var(--window-border-light)] border-r-[var(--window-border-light)] bg-[var(--window-panel-bg)] p-3">
+        <p className="text-[10px] text-[var(--window-text-secondary)] uppercase tracking-widest mb-2 font-bold">
           Now Playing
         </p>
 
@@ -97,19 +97,19 @@ const Music = ({ onClose }) => {
             <div className="flex items-center gap-3">
               <div className="relative w-12 h-12 shrink-0">
                 <div
-                  className={`w-12 h-12 rounded-full bg-black border-4 border-[#888] flex items-center justify-center ${
+                  className={`w-12 h-12 rounded-full bg-[var(--window-active-bg)] border-4 border-[var(--window-text-secondary)] flex items-center justify-center ${
                     isPlaying ? "animate-spin [animation-duration:2s]" : ""
                   }`}
                 >
-                  <div className="w-3 h-3 rounded-full bg-[#c0c0c0]" />
+                  <div className="w-3 h-3 rounded-full bg-[var(--window-border-light)]" />
                 </div>
               </div>
 
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold truncate text-[#351303]">
+                <p className="text-sm font-bold truncate text-[var(--window-body-text)]">
                   {currentTrack.title}
                 </p>
-                <p className="text-[11px] text-[#444]">
+                <p className="text-[11px] text-[var(--window-text-secondary)]">
                   {currentTrack.artist}
                 </p>
               </div>
@@ -119,21 +119,21 @@ const Music = ({ onClose }) => {
             <div className="flex items-center justify-center mt-3">
               <div className="flex gap-4">
                 <button
-                  className="px-2 py-1 border-2 border-t-white border-l-white border-b-[#555] border-r-[#555] bg-[#9b6b53] active:border-t-[#555] active:border-l-[#555] active:border-b-white active:border-r-white"
+                  className="px-2 py-1 border-2 border-t-[var(--window-border-light)] border-l-[var(--window-border-light)] border-b-[var(--window-border-dark)] border-r-[var(--window-border-dark)] bg-[var(--window-button-bg)] text-[var(--window-button-text)] active:border-t-[var(--window-border-dark)] active:border-l-[var(--window-border-dark)] active:border-b-[var(--window-border-light)] active:border-r-[var(--window-border-light)]"
                   onClick={playPrev}
                 >
                   ⏮
                 </button>
 
                 <button
-                  className="px-2 py-1 border-2 border-t-white border-l-white border-b-[#555] border-r-[#555] bg-[#9b6b53] active:border-t-[#555] active:border-l-[#555] active:border-b-white active:border-r-white"
+                  className="px-2 py-1 border-2 border-t-[var(--window-border-light)] border-l-[var(--window-border-light)] border-b-[var(--window-border-dark)] border-r-[var(--window-border-dark)] bg-[var(--window-button-bg)] text-[var(--window-button-text)] active:border-t-[var(--window-border-dark)] active:border-l-[var(--window-border-dark)] active:border-b-[var(--window-border-light)] active:border-r-[var(--window-border-light)]"
                   onClick={togglePlay}
                 >
                   {isPlaying ? "⏸" : "▶"}
                 </button>
 
                 <button
-                  className="px-2 py-1 border-2 border-t-white border-l-white border-b-[#555] border-r-[#555] bg-[#9b6b53] active:border-t-[#555] active:border-l-[#555] active:border-b-white active:border-r-white"
+                  className="px-2 py-1 border-2 border-t-[var(--window-border-light)] border-l-[var(--window-border-light)] border-b-[var(--window-border-dark)] border-r-[var(--window-border-dark)] bg-[var(--window-button-bg)] text-[var(--window-button-text)] active:border-t-[var(--window-border-dark)] active:border-l-[var(--window-border-dark)] active:border-b-[var(--window-border-light)] active:border-r-[var(--window-border-light)]"
                   onClick={playNext}
                 >
                   ⏭
@@ -143,7 +143,7 @@ const Music = ({ onClose }) => {
 
             {/* Progress Bar */}
             <div className="flex items-center gap-2 mt-3">
-              <span className="text-xs w-[35px] text-left font-mono text-[#5a3e2b]">
+              <span className="text-xs w-[35px] text-left font-mono text-[var(--window-text-secondary)]">
                 {formatTime(currentTime)}
               </span>
 
@@ -156,29 +156,29 @@ const Music = ({ onClose }) => {
                   audioRef.current.currentTime = e.target.value;
                   setCurrentTime(e.target.value);
                 }}
-                className="flex-1 appearance-none h-2 rounded-full bg-[#d6c3a3]
+                className="flex-1 appearance-none h-2 rounded-full bg-[var(--window-track-bg)]
                 [&::-webkit-slider-thumb]:appearance-none
                 [&::-webkit-slider-thumb]:w-4
                 [&::-webkit-slider-thumb]:h-4
                 [&::-webkit-slider-thumb]:rounded-full
-                [&::-webkit-slider-thumb]:bg-[#5a3e2b]
+                [&::-webkit-slider-thumb]:bg-[var(--window-active-bg)]
                 [&::-webkit-slider-thumb]:cursor-pointer"
               />
 
-              <span className="text-xs w-[35px] text-right font-mono text-[#5a3e2b]">
+              <span className="text-xs w-[35px] text-right font-mono text-[var(--window-text-secondary)]">
                 {formatTime(duration)}
               </span>
             </div>
           </>
         ) : (
-          <p className="text-xs text-[#666] italic">
+          <p className="text-xs text-[var(--window-text-secondary)] italic">
             — select a track to play —
           </p>
         )}
       </div>
 
       {/* PLAYLIST */}
-      <div className="mx-3 mt-3 mb-3 border-t-2 border-l-2 border-[#555] border-b-2 border-r-2 border-b-white border-r-white overflow-y-auto max-h-[220px] bg-white">
+      <div className="mx-3 mt-3 mb-3 border-t-2 border-l-2 border-[var(--window-border-dark)] border-b-2 border-r-2 border-b-[var(--window-border-light)] border-r-[var(--window-border-light)] overflow-y-auto max-h-[220px] bg-[var(--window-body-bg)]">
         {PLAYLIST.map((track, i) => {
           const isActive = currentIndex === i;
 
@@ -186,8 +186,8 @@ const Music = ({ onClose }) => {
             <div
               key={i}
               onClick={() => handleTrackClick(i)}
-              className={`flex items-center gap-3 px-3 py-2 cursor-pointer border-b border-[#ddd]
-              ${isActive ? "bg-[#351303] text-[#e2c7aa]" : "hover:bg-[#e6d3b3]"}`}
+              className={`flex items-center gap-3 px-3 py-2 cursor-pointer border-b border-[var(--window-border-dark)]/20
+              ${isActive ? "bg-[var(--window-active-bg)] text-[var(--window-active-text)]" : "hover:bg-[var(--window-hover-bg)] text-[var(--window-body-text)]"}`}
             >
               <span className="text-xs w-4 font-mono">
                 {isActive && isPlaying ? "▶" : i + 1}

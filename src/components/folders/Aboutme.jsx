@@ -12,16 +12,16 @@ const AboutMe = ({ onClose }) => {
         <div className="flex items-center justify-center">
           <img
             src="/me.jpeg"
-            className="border-2 border-black w-[400px] h-auto"
+            className="border-2 border-[var(--window-border-dark)] w-[400px] h-auto"
           />
         </div>
 
         <div className="flex flex-col gap-6 items-start justify-center">
-          <h1 className="text-2xl text-[#351303] m-0 text-left">Hi! I am Samidha,</h1>
-          <p className="text-lg text-[#351303] uppercase tracking-widest m-0 text-left font-bold">
+          <h1 className="text-2xl text-[var(--window-body-text)] m-0 text-left">Hi! I am Samidha,</h1>
+          <p className="text-lg text-[var(--window-body-text)] uppercase tracking-widest m-0 text-left font-bold">
             Full-Stack Developer
           </p>
-          <p className="text-sm text-[#573c27] leading-relaxed m-0 text-left">
+          <p className="text-sm text-[var(--window-text-secondary)] leading-relaxed m-0 text-left">
             4th year CS Engineering student. I live in React, dabble in ML, and
             think pixel art is a valid life choice.
           </p>

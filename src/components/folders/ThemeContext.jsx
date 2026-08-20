@@ -5,6 +5,24 @@ const STORAGE_KEY = "desktop-theme-settings";
 
 const ThemeContext = createContext(null);
 
+const CSS_VAR_MAP = {
+  headerBg: "--window-header-bg",
+  headerText: "--window-header-text",
+  bodyBg: "--window-body-bg",
+  bodyText: "--window-body-text",
+  textSecondary: "--window-text-secondary",
+  borderDark: "--window-border-dark",
+  borderLight: "--window-border-light",
+  panelBg: "--window-panel-bg",
+  accent: "--window-accent",
+  buttonBg: "--window-button-bg",
+  buttonText: "--window-button-text",
+  hoverBg: "--window-hover-bg",
+  activeBg: "--window-active-bg",
+  activeText: "--window-active-text",
+  trackBg: "--window-track-bg",
+};
+
 export function ThemeProvider({ children }) {
   const [settings, setSettings] = useState(() => {
     try {
@@ -21,6 +39,13 @@ export function ThemeProvider({ children }) {
     const bg = BACKGROUNDS.find((b) => b.id === settings.backgroundId) ?? BACKGROUNDS[0];
     const root = document.documentElement;
     root.dataset.background = bg.id;
+
+    if (bg.colors) {
+      Object.entries(bg.colors).forEach(([key, value]) => {
+        const cssVar = CSS_VAR_MAP[key];
+        if (cssVar) root.style.setProperty(cssVar, value);
+      });
+    }
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));

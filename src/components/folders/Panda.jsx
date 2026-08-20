@@ -30,7 +30,8 @@ function ThoughtBubble({ children, width = 140 }) {
       >
         <path
           d="M146.63 298.269C146.159 298.527 135.463 322 132.326 322C123.184 322 121.995 300.313 114.176 297.555C113.437 297.292 82.0986 307.391 72.5922 292.085C63.0858 276.778 61.3346 103.86 74.1479 91.947C86.9612 80.0342 316.748 70.8011 328.865 90.2687C334.557 99.4132 339.793 273.078 329 284C303.135 307.724 208.064 294.156 162.286 297.574"
-          stroke="#573c27"
+          fill="var(--window-body-bg)"
+          stroke="var(--window-text-secondary)"
           strokeOpacity="0.9"
           strokeWidth="3.2"
           strokeLinecap="round"
@@ -39,8 +40,7 @@ function ThoughtBubble({ children, width = 140 }) {
       </svg>
 
       <div
-        className="absolute flex items-center justify-center text-center
-                   text-[10px] font-bold text-[#351303] leading-tight"
+        className="absolute flex items-center justify-center text-center text-[10px] font-bold text-[var(--window-border-dark)] leading-tight"
         style={{ top: "23%", bottom: "25%", left: "24%", right: "22%" }}
       >
         {children}
@@ -118,7 +118,6 @@ export default function PandaIcon({
   };
 
   useEffect(() => clearAnim, []);
-
 
   useEffect(() => {
     let cancelled = false;

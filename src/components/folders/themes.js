@@ -4,6 +4,23 @@ export const BACKGROUNDS = [
     name: "Beige Grid",
     type: "component",
     preview: "/backgrounds/preview-grid.png",
+    colors: {
+      headerBg: "#573c27",
+      headerText: "#e2c7aa",
+      bodyBg: "#e2c7aa",
+      bodyText: "#351303",
+      textSecondary: "#573c27",
+      borderDark: "#000000",
+      borderLight: "#ffffff",
+      panelBg: "#f0dfcc",
+      accent: "#c05754",
+      buttonBg: "#9b6b53",
+      buttonText: "#ffffff",
+      hoverBg: "#e6d3b3",
+      activeBg: "#351303",
+      activeText: "#e2c7aa",
+      trackBg: "#d6c3a3",
+    },
   },
 
   {
@@ -12,6 +29,32 @@ export const BACKGROUNDS = [
     type: "image",
     preview: "/backgrounds/purple-night.png",
     image: "/backgrounds/purple-night.png",
+    colors: {
+      headerBg: "#50459f",
+      headerText: "#fff5ff",
+
+      bodyBg: "#efccec",
+      bodyText: "#2d2450",
+
+      textSecondary: "#4b3fa8",
+
+      borderDark: "#30266f",
+      borderLight: "#fff5ff",
+
+      panelBg: "#e7a3c9",
+
+      accent: "#8c72cf",
+
+      buttonBg: "#4b3fa8",
+      buttonText: "#fff5ff",
+
+      hoverBg: "#d9b0e3",
+
+      activeBg: "#30266f",
+      activeText: "#fff5ff",
+
+      trackBg: "#8c72cf",
+    },
   },
 
   {
@@ -20,6 +63,23 @@ export const BACKGROUNDS = [
     type: "image",
     preview: "/backgrounds/ghibli-bg.png",
     image: "/backgrounds/ghibli-bg.png",
+    colors: {
+      headerBg: "#5a7d3a",
+      headerText: "#f3f7e8",
+      bodyBg: "#e8f0d8",
+      bodyText: "#33441f",
+      textSecondary: "#5a7d3a",
+      borderDark: "#2e3d1a",
+      borderLight: "#ffffff",
+      panelBg: "#d8e6bc",
+      accent: "#e0a83c",
+      buttonBg: "#7a9b52",
+      buttonText: "#f3f7e8",
+      hoverBg: "#cbdda8",
+      activeBg: "#33441f",
+      activeText: "#f3f7e8",
+      trackBg: "#c0d49a",
+    },
   },
 
   {
@@ -28,6 +88,32 @@ export const BACKGROUNDS = [
     type: "image",
     preview: "/backgrounds/rainy-day.png",
     image: "/backgrounds/rainy-day.png",
+    colors: {
+      headerBg: "#5e3f17",
+      headerText: "#fff3c4",
+
+      bodyBg: "#f9fd7e",
+      bodyText: "#3b2b16",
+
+      textSecondary: "#76582b",
+
+      borderDark: "#4b3215",
+      borderLight: "#fff1bd",
+
+      panelBg: "#eaca73",
+
+      accent: "#e4a92b",
+
+      buttonBg: "#9a6b20",
+      buttonText: "#fff3c4",
+
+      hoverBg: "#edcf78",
+
+      activeBg: "#6b4818",
+      activeText: "#fff5cc",
+
+      trackBg: "#c5a44f",
+    },
   },
 
   {
@@ -36,6 +122,32 @@ export const BACKGROUNDS = [
     type: "image",
     preview: "/backgrounds/book-store.png",
     image: "/backgrounds/book-store.png",
+    colors: {
+      headerBg: "#784020",
+      headerText: "#fff1e8",
+
+      bodyBg: "#fcc9b0",
+      bodyText: "#3b2115",
+
+      textSecondary: "#784020",
+
+      borderDark: "#5a2d18",
+      borderLight: "#ffe8dc",
+
+      panelBg: "#efaa91",
+
+      accent: "#a85f43",
+
+      buttonBg: "#784020",
+      buttonText: "#fff1e8",
+
+      hoverBg: "#e9a086",
+
+      activeBg: "#5a2d18",
+      activeText: "#fff1e8",
+
+      trackBg: "#d98d72",
+    },
   },
 
   {
@@ -44,6 +156,32 @@ export const BACKGROUNDS = [
     type: "image",
     preview: "/backgrounds/paris-in-bloom.png",
     image: "/backgrounds/paris-in-bloom.png",
+    colors: {
+      headerBg: "#facbbb",
+      headerText: "#587144",
+
+      bodyBg: "#b8e0f6",
+      bodyText: "#30452a",
+
+      textSecondary: "#587144",
+
+      borderDark: "#3f522f",
+      borderLight: "#fff8e8",
+
+      panelBg: "#facbbb",
+
+      accent: "#bdbd4b",
+
+      buttonBg: "#587144",
+      buttonText: "#fff8e8",
+
+      hoverBg: "#bdbd4b",
+
+      activeBg: "#3f522f",
+      activeText: "#fff8e8",
+
+      trackBg: "#8fa76a",
+    },
   },
 ];
 
