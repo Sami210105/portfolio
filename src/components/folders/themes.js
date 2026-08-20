@@ -5,19 +5,45 @@ export const BACKGROUNDS = [
     type: "component",
     preview: "/backgrounds/preview-grid.png",
   },
+
   {
     id: "purple-night",
     name: "Purple Night",
     type: "image",
-    preview: "/backgrounds/ghibli-bg.jpg",
-    image: "/backgrounds/ghibli-bg.jpg",
+    preview: "/backgrounds/purple-night.png",
+    image: "/backgrounds/purple-night.png",
   },
+
   {
-    id: "ocean-blue",
-    name: "Ocean Blue",
+    id: "sunny-meadow",
+    name: "Sunny Meadow",
     type: "image",
-    preview: "/backgrounds/day-bg.jpg",
-    image: "/backgrounds/day-bg.jpg",
+    preview: "/backgrounds/ghibli-bg.png",
+    image: "/backgrounds/ghibli-bg.png",
+  },
+
+  {
+    id: "rainy-day",
+    name: "Rainy Day",
+    type: "image",
+    preview: "/backgrounds/rainy-day.png",
+    image: "/backgrounds/rainy-day.png",
+  },
+
+  {
+    id: "cozy-bookstore",
+    name: "Cozy Bookstore",
+    type: "image",
+    preview: "/backgrounds/book-store.png",
+    image: "/backgrounds/book-store.png",
+  },
+
+  {
+    id: "paris-in-bloom",
+    name: "Paris in Bloom",
+    type: "image",
+    preview: "/backgrounds/paris-in-bloom.png",
+    image: "/backgrounds/paris-in-bloom.png",
   },
 ];
 
