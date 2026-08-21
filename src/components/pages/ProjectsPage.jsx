@@ -18,10 +18,8 @@ function getScrollParent(el) {
 
 export default function ProjectsPage() {
   const wrapRef = useRef(null);
-  const [progress, setProgress] = useState(0); 
-  const [pageH, setPageH] = useState(
-    () => window.innerHeight - TASKBAR_HEIGHT
-  );
+  const [progress, setProgress] = useState(0);
+  const [pageH, setPageH] = useState(() => window.innerHeight - TASKBAR_HEIGHT);
 
   useEffect(() => {
     const scrollTarget = getScrollParent(wrapRef.current);
@@ -61,15 +59,8 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div
-      ref={wrapRef}
-      style={{ height: `${PROJECTS.length * pageH}px` }}
-      className="relative w-full"
-    >
-      <div
-        style={{ height: `${pageH}px` }}
-        className="sticky top-0 w-full flex items-center justify-center overflow-hidden"
-      >
+    <div ref={wrapRef} style={{ height: `${PROJECTS.length * pageH}px` }} className="relative w-full">
+      <div style={{ height: `${pageH}px` }} className="sticky top-0 w-full flex items-center justify-center overflow-hidden">
         <div className="relative flex items-center gap-3 md:gap-8">
           {/* tabs */}
           <div className="flex flex-col gap-2 z-30">
@@ -77,8 +68,8 @@ export default function ProjectsPage() {
               <button
                 key={p.id}
                 onClick={() => jumpTo(i)}
-                className={`text-[10px] font-bold px-2 py-2 border-2 border-black
-                  ${activeTab === i ? "bg-[#c05754] text-white" : "bg-[#9b6b53] text-[#e2c7aa]"}`}
+                className={`text-[10px] font-bold px-2 py-2 border-2 border-[var(--window-border-dark)]
+                  ${activeTab === i ? "bg-[var(--window-accent)] text-[var(--window-button-text)]" : "bg-[var(--window-button-bg)] text-[var(--window-button-text)]"}`}
                 style={{ writingMode: "vertical-rl" }}
               >
                 {p.title}
@@ -87,10 +78,7 @@ export default function ProjectsPage() {
           </div>
 
           {/* notebook */}
-          <div
-            style={{ perspective: "2200px" }}
-            className="relative w-[100vw] max-w-[900px] h-[68vh] max-h-[620px] isolate"
-          >
+          <div style={{ perspective: "2200px" }} className="relative w-[100vw] max-w-[900px] h-[68vh] max-h-[620px] isolate">
             <RingBinding count={13} />
 
             {PROJECTS.map((project, i) => {
@@ -101,10 +89,7 @@ export default function ProjectsPage() {
               if (i < currentIndex) rotateY = -180;
               if (i === currentIndex && !isLastPage) rotateY = -local * 180;
 
-              const shade =
-                i === currentIndex && !isLastPage
-                  ? Math.sin(local * Math.PI)
-                  : 0;
+              const shade = i === currentIndex && !isLastPage ? Math.sin(local * Math.PI) : 0;
 
               return (
                 <div
@@ -118,54 +103,36 @@ export default function ProjectsPage() {
                   className="absolute inset-0"
                 >
                   {/* front face */}
-                  <div
-                    style={{ backfaceVisibility: "hidden" }}
-                    className="absolute inset-0 bg-[#f5f5f5] border-2 border-black shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden"
-                  >
+                  <div style={{ backfaceVisibility: "hidden" }} className="absolute inset-0 bg-[var(--window-body-bg)] border-2 border-[var(--window-border-dark)] shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden">
                     <div
                       className="absolute inset-0 pointer-events-none"
                       style={{
-                        backgroundImage:
-                          "repeating-linear-gradient(to bottom, black 0px, black 1px, transparent 1px, transparent 28px)",
+                        backgroundImage: "repeating-linear-gradient(to bottom, black 0px, black 1px, transparent 1px, transparent 28px)",
                         opacity: 0.25,
                       }}
                     />
 
-                    <div
-                      className="absolute inset-0 pointer-events-none bg-black"
-                      style={{ opacity: shade * 0.25 }}
-                    />
+                    <div className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: shade * 0.25 }} />
 
                     <ProjectFace project={project} />
 
-                    {/* Indicator */}
-                    <div className="absolute bottom-7 left-60 text-xs font-mono text-[#573c27] px-3 py-1 z-20 pointer-events-none text-center">
+                    <div className="absolute bottom-7 left-60 text-xs font-mono text-[var(--window-text-secondary)] px-3 py-1 z-20 pointer-events-none text-center">
                       {i + 1} / {PROJECTS.length}
                       <p className="text-[12px] mt-1">scroll to flip</p>
                     </div>
                   </div>
 
                   {/* back face */}
-                  <div
-                    style={{
-                      backfaceVisibility: "hidden",
-                      transform: "rotateY(180deg)",
-                    }}
-                    className="absolute inset-0 bg-[#e6d3b3] border-2 border-black"
-                  >
+                  <div style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }} className="absolute inset-0 bg-[var(--window-panel-bg)] border-2 border-[var(--window-border-dark)]">
                     <div
                       className="absolute inset-0 pointer-events-none"
                       style={{
-                        backgroundImage:
-                          "repeating-linear-gradient(to bottom, black 0px, black 1px, transparent 1px, transparent 28px)",
+                        backgroundImage: "repeating-linear-gradient(to bottom, black 0px, black 1px, transparent 1px, transparent 28px)",
                         opacity: 0.25,
                       }}
                     />
 
-                    <div
-                      className="absolute inset-0 pointer-events-none bg-black"
-                      style={{ opacity: shade * 0.25 }}
-                    />
+                    <div className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: shade * 0.25 }} />
                   </div>
                 </div>
               );

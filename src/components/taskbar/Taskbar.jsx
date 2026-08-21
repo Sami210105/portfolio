@@ -23,8 +23,8 @@ function Clock() {
 
   return (
     <div className="flex flex-col items-end text-right leading-tight select-none cursor-default px-2">
-      <span className="text-[#e2c7aa] text-xs font-semibold tracking-wide">{hr}</span>
-      <span className="text-[#9b6b53] text-[10px]">{day}, {date}</span>
+      <span className="text-[var(--window-header-text)] text-xs font-semibold tracking-wide">{hr}</span>
+      <span className="text-[var(--window-text-secondary)] text-[10px]">{day}, {date}</span>
     </div>
   );
 }
@@ -71,11 +71,11 @@ function SearchBar({ setActivePage }) {
       <div
         className={`flex items-center gap-2 px-3 h-9 rounded-full transition-all duration-200
           ${focused
-            ? "bg-[#341303] border border-[#9b6b53] w-52 shadow-[0_0_14px_rgba(155,107,83,0.3)]"
-            : "bg-[#341303]/80 border border-[#573c27] w-40 hover:border-[#9b6b53]"
+            ? "bg-[var(--window-header-bg)] border border-[var(--window-text-secondary)] w-52 shadow-[0_0_14px_rgba(155,107,83,0.3)]"
+            : "bg-[var(--window-header-bg)]/80 border border-[var(--window-border-dark)] w-40 hover:border-[var(--window-text-secondary)]"
           }`}
       >
-        <svg className="w-3.5 h-3.5 text-[#9b6b53] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <svg className="w-3.5 h-3.5 text-[var(--window-text-secondary)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
         <input
@@ -86,12 +86,12 @@ function SearchBar({ setActivePage }) {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder="Search..."
-          className="bg-transparent text-[#e2c7aa] placeholder-[#573c27] text-xs outline-none w-full font-medium"
+          className="bg-transparent text-[var(--window-header-text)] placeholder-[var(--window-border-dark)] text-xs outline-none w-full font-medium"
         />
         {query && (
           <button
             onClick={() => { setQuery(""); setOpen(false); }}
-            className="text-[#573c27] hover:text-[#e2c7aa] transition-colors shrink-0"
+            className="text-[var(--window-border-dark)] hover:text-[var(--window-header-text)] transition-colors shrink-0"
           >
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path d="M18 6 6 18M6 6l12 12"/>
@@ -101,22 +101,22 @@ function SearchBar({ setActivePage }) {
       </div>
 
       {open && (
-        <div className="absolute bottom-12 left-0 w-52 bg-[#341303] border border-[#573c27] rounded-xl overflow-hidden shadow-[0_-6px_28px_rgba(0,0,0,0.7)] z-50">
+        <div className="absolute bottom-12 left-0 w-52 bg-[var(--window-header-bg)] border border-[var(--window-border-dark)] rounded-xl overflow-hidden shadow-[0_-6px_28px_rgba(0,0,0,0.7)] z-50">
           {results.length > 0 ? (
             results.map(({ page, label }) => (
               <button
                 key={page}
                 onMouseDown={() => pick(page)}
-                className="w-full text-left px-4 py-2.5 text-xs text-[#e2c7aa] hover:bg-[#573c27]/40 flex items-center gap-2.5 transition-colors"
+                className="w-full text-left px-4 py-2.5 text-xs text-[var(--window-header-text)] hover:bg-[var(--window-hover-bg)]/40 flex items-center gap-2.5 transition-colors"
               >
-                <svg className="w-3 h-3 text-[#9b6b53]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-3 h-3 text-[var(--window-text-secondary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path d="m9 18 6-6-6-6"/>
                 </svg>
-                <span>Go to <strong className="text-[#9b6b53]">{label}</strong></span>
+                <span>Go to <strong className="text-[var(--window-text-secondary)]">{label}</strong></span>
               </button>
             ))
           ) : (
-            <p className="px-4 py-3 text-xs text-[#573c27] italic">No results found</p>
+            <p className="px-4 py-3 text-xs text-[var(--window-border-dark)] italic">No results found</p>
           )}
         </div>
       )}
@@ -126,7 +126,7 @@ function SearchBar({ setActivePage }) {
 
 export default function Taskbar({ activePage, setActivePage }) {
   return (
-    <div className="fixed bottom-0 left-0 w-full h-16 bg-[#341303] border-t border-[#573c27]/60 backdrop-blur-md flex items-center px-4 gap-2 z-50">
+    <div className="fixed bottom-0 left-0 w-full h-16 bg-[var(--window-header-bg)] border-t border-[var(--window-border-dark)]/60 backdrop-blur-md flex items-center px-4 gap-2 z-50">
 
       <SearchBar setActivePage={setActivePage} />
 

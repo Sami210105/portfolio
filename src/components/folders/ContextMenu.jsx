@@ -32,7 +32,6 @@ const ContextMenu = ({ x, y, onClose, onPersonalize, onRefresh }) => {
     };
   }, [onClose]);
 
-  // clamp so the menu never renders off-screen
   const left = Math.min(x, window.innerWidth - MENU_WIDTH - 8);
   const top = Math.min(y, window.innerHeight - MENU_HEIGHT - 8);
 
@@ -46,20 +45,20 @@ const ContextMenu = ({ x, y, onClose, onPersonalize, onRefresh }) => {
   return (
     <div
       ref={menuRef}
-      className="fixed z-[9998] w-52 bg-[#e2c7aa] border-2 border-[#351303] shadow-[3px_3px_0px_rgba(0,0,0,0.4)] font-mono text-[13px] py-1 select-none"
+      className="fixed z-[9998] w-52 bg-[var(--window-body-bg)] border-2 border-[var(--window-border-dark)] shadow-[3px_3px_0px_rgba(0,0,0,0.4)] font-mono text-[13px] py-1 select-none"
       style={{ left, top }}
     >
       {MENU_ITEMS.map((item) =>
         item.divider ? (
-          <div key={item.id} className="my-1 border-t border-[#a5876b]" />
+          <div key={item.id} className="my-1 border-t border-[var(--window-text-secondary)] opacity-40" />
         ) : (
           <div
             key={item.id}
             onClick={() => handleItemClick(item)}
             className={`flex items-center justify-between px-3 py-1.5 ${
               item.disabled
-                ? "text-[#a5876b] cursor-default"
-                : "text-[#351303] cursor-pointer hover:bg-[#573c27] hover:text-[#e2c7aa]"
+                ? "text-[var(--window-text-secondary)] opacity-50 cursor-default"
+                : "text-[var(--window-body-text)] cursor-pointer hover:bg-[var(--window-header-bg)] hover:text-[var(--window-header-text)]"
             } ${item.id === "personalize" ? "font-bold" : ""}`}
           >
             <span>{item.label}</span>
