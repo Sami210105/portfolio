@@ -20,6 +20,7 @@ export const BACKGROUNDS = [
       activeBg: "#351303",
       activeText: "#e2c7aa",
       trackBg: "#d6c3a3",
+      labelText: "#985a3e",
     },
   },
 
@@ -32,28 +33,20 @@ export const BACKGROUNDS = [
     colors: {
       headerBg: "#50459f",
       headerText: "#fff5ff",
-
       bodyBg: "#efccec",
       bodyText: "#2d2450",
-
       textSecondary: "#4b3fa8",
-
       borderDark: "#30266f",
       borderLight: "#fff5ff",
-
-      panelBg: "#e7a3c9",
-
+      panelBg: "#7d75b7",
       accent: "#8c72cf",
-
       buttonBg: "#4b3fa8",
       buttonText: "#fff5ff",
-
       hoverBg: "#d9b0e3",
-
       activeBg: "#30266f",
       activeText: "#fff5ff",
-
       trackBg: "#8c72cf",
+      labelText: "#f3ecff",
     },
   },
 
@@ -79,6 +72,7 @@ export const BACKGROUNDS = [
       activeBg: "#33441f",
       activeText: "#f3f7e8",
       trackBg: "#c0d49a",
+      labelText: "#33441f",
     },
   },
 
@@ -91,28 +85,20 @@ export const BACKGROUNDS = [
     colors: {
       headerBg: "#5e3f17",
       headerText: "#fff3c4",
-
       bodyBg: "#f9fd7e",
       bodyText: "#3b2b16",
-
       textSecondary: "#76582b",
-
       borderDark: "#4b3215",
       borderLight: "#fff1bd",
-
-      panelBg: "#eaca73",
-
+      panelBg: "#5f4726",
       accent: "#e4a92b",
-
       buttonBg: "#9a6b20",
       buttonText: "#fff3c4",
-
       hoverBg: "#edcf78",
-
       activeBg: "#6b4818",
       activeText: "#fff5cc",
-
       trackBg: "#c5a44f",
+      labelText: "#fff3c4",
     },
   },
 
@@ -125,28 +111,20 @@ export const BACKGROUNDS = [
     colors: {
       headerBg: "#784020",
       headerText: "#fff1e8",
-
       bodyBg: "#fcc9b0",
       bodyText: "#3b2115",
-
       textSecondary: "#784020",
-
       borderDark: "#5a2d18",
       borderLight: "#ffe8dc",
-
       panelBg: "#efaa91",
-
       accent: "#a85f43",
-
       buttonBg: "#784020",
       buttonText: "#fff1e8",
-
       hoverBg: "#e9a086",
-
       activeBg: "#5a2d18",
       activeText: "#fff1e8",
-
       trackBg: "#d98d72",
+      labelText: "#fff1e8",
     },
   },
 
@@ -159,28 +137,20 @@ export const BACKGROUNDS = [
     colors: {
       headerBg: "#facbbb",
       headerText: "#587144",
-
       bodyBg: "#b8e0f6",
       bodyText: "#30452a",
-
       textSecondary: "#587144",
-
       borderDark: "#3f522f",
       borderLight: "#fff8e8",
-
       panelBg: "#facbbb",
-
       accent: "#bdbd4b",
-
       buttonBg: "#587144",
       buttonText: "#fff8e8",
-
       hoverBg: "#bdbd4b",
-
       activeBg: "#3f522f",
       activeText: "#fff8e8",
-
       trackBg: "#8fa76a",
+      labelText: "#213412",
     },
   },
 ];

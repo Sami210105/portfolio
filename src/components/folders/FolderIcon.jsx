@@ -15,7 +15,7 @@ export default function FolderIcon({ icon, label, onClick }) {
         "
       />
 
-      <span className="text-sm font-mono text-center">
+      <span className="text-sm font-mono text-center font-bold text-[var(--window-label-text)]">
         {label}
       </span>
     </div>

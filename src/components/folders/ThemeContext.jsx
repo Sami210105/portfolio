@@ -21,6 +21,7 @@ const CSS_VAR_MAP = {
   activeBg: "--window-active-bg",
   activeText: "--window-active-text",
   trackBg: "--window-track-bg",
+  labelText: "--window-label-text",
 };
 
 export function ThemeProvider({ children }) {

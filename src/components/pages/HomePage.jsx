@@ -88,7 +88,7 @@ const PANDA_REACTIONS = {
   ],
 };
 
-const HomePage = () => {
+const HomePage = ({setActivePage}) => {
   const [openWindow, setOpenWindow] = useState("about");
   const [hoveredFolder, setHoveredFolder] = useState(null);
   const [showNote, setShowNote] = useState(true);
@@ -166,6 +166,9 @@ const HomePage = () => {
           fps={12}
           reactTo={hoveredFolder}
           reactions={PANDA_REACTIONS}
+          setActivePage={setActivePage}
+          onOpenWindow={setOpenWindow}
+          onPersonalize={() => setShowPersonalize(true)}
         />
       </div>
 

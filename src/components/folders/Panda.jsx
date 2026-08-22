@@ -7,14 +7,41 @@ const FRAMES = Array.from(
 );
 
 const THOUGHTS = [
-  "bamboo... where's the bamboo",
-  "Hire me? or don't. i'm a panda.",
-  "“This website has more personality than you.”",
-  "welcome to my little corner of the internet",
-  "hi hi :)",
-  "make yourself at home",
-  "you found me!",
-  "this seemed like a good idea at 2am",
+  {
+    text: "bamboo... where's the bamboo",
+    priority: 10,
+    action: null,
+  },
+  {
+    text: "Hire me? or don't. i'm a panda.",
+    priority: 6,
+    action: "connect",
+  },
+  {
+    text: "Click on the bubble to see what happens!",
+    priority: 5,
+    action: null,
+  },
+  {
+    text: "welcome to my little corner of the internet",
+    priority: 7,
+    action: null,
+  },
+  {
+    text: "hi hi :)",
+    priority: 10,
+    action: null,
+  },
+  {
+    text: "right click to personalize the desktop",
+    priority: 1,
+    action: "personalize",
+  },
+  {
+    text: "you found me!",
+    priority: 4,
+    action: "null",
+  },
 ];
 
 function ThoughtBubble({ children, width = 140 }) {
@@ -56,14 +83,20 @@ export default function PandaIcon({
   reactions = {},
   selfBubblePos = "-top-12 -right-18",
   reactionBubblePos = "-top-12 left-18 -translate-x-1/2",
+  idleBubblePos = "-top-12 left-18 -translate-x-1/2",
+  setActivePage = null,
+  onOpenWindow = null,
+  onPersonalize = null,
 }) {
   const [frameIndex, setFrameIndex] = useState(0);
-  const [thought, setThought] = useState("");
+  const [thought, setThought] = useState({ text: "", action: null });
   const [showBubble, setShowBubble] = useState(false);
-  const [bubbleSource, setBubbleSource] = useState(null); // "self" | "reaction"
+  const [bubbleSource, setBubbleSource] = useState(null); // "self" | "reaction" | "idle"
   const intervalRef = useRef(null);
   const frameRef = useRef(0);
   const selfHoverRef = useRef(false);
+  const reactToRef = useRef(reactTo);
+  const idleTimerRef = useRef(null);
   const [framesReady, setFramesReady] = useState(false);
 
   const clearAnim = () => {
@@ -104,8 +137,12 @@ export default function PandaIcon({
   const playForwardOnce = (customThought) => {
     setShowBubble(false);
     animateTo(FRAMES.length - 1, () => {
+      const picked =
+        customThought ?? THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)];
       setThought(
-        customThought ?? THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)],
+        typeof picked === "string"
+          ? { text: picked, action: null }
+          : { text: picked.text, action: picked.action ?? null },
       );
       setBubbleSource("self");
       setShowBubble(true);
@@ -117,7 +154,47 @@ export default function PandaIcon({
     animateTo(0);
   };
 
+  const clearIdleTimer = () => {
+    if (idleTimerRef.current) {
+      clearTimeout(idleTimerRef.current);
+      idleTimerRef.current = null;
+    }
+  };
+
+  const scheduleIdleThought = () => {
+    clearIdleTimer();
+    const waitBeforeNext = 4000 + Math.random() * 6000; // 6-12s
+
+    idleTimerRef.current = setTimeout(() => {
+      if (selfHoverRef.current || reactToRef.current) {
+        scheduleIdleThought();
+        return;
+      }
+
+      const picked = THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)];
+      setThought({ text: picked.text, action: picked.action ?? null });
+      setBubbleSource("idle");
+      setShowBubble(true);
+
+      idleTimerRef.current = setTimeout(() => {
+        if (!selfHoverRef.current) setShowBubble(false);
+        scheduleIdleThought();
+      }, 6000); // how long the idle bubble stays up
+    }, waitBeforeNext);
+  };
+
   useEffect(() => clearAnim, []);
+
+  useEffect(() => {
+    reactToRef.current = reactTo;
+  }, [reactTo]);
+
+  useEffect(() => {
+    if (!framesReady) return;
+    scheduleIdleThought();
+    return clearIdleTimer;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [framesReady]);
 
   useEffect(() => {
     let cancelled = false;
@@ -144,19 +221,22 @@ export default function PandaIcon({
     setShowBubble(false);
 
     if (reactTo) {
+      clearIdleTimer();
       const line = reactions[reactTo];
       const text =
         (Array.isArray(line)
           ? line[Math.floor(Math.random() * line.length)]
-          : line) ?? THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)];
+          : line) ??
+        THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)].text;
 
       animateTo(0, () => {
-        setThought(text);
+        setThought({ text, action: null });
         setBubbleSource("reaction");
         setShowBubble(true);
       });
     } else {
       animateTo(0);
+      scheduleIdleThought();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reactTo, framesReady]);
@@ -164,12 +244,33 @@ export default function PandaIcon({
   const handleSelfEnter = () => {
     if (!framesReady) return;
     selfHoverRef.current = true;
+    clearIdleTimer();
     playForwardOnce(); // full animation + random custom thought
   };
 
   const handleSelfLeave = () => {
     selfHoverRef.current = false;
     playBackwardToStart();
+    scheduleIdleThought();
+  };
+
+  const handlePandaClick = () => {
+    const action = thought?.action;
+    if (!action) return;
+
+    switch (action) {
+      case "connect":
+        onOpenWindow?.("connect");
+        break;
+      case "personalize":
+        onPersonalize?.();
+        break;
+      case "achievements":
+        setActivePage?.("achievements");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -177,10 +278,14 @@ export default function PandaIcon({
       {showBubble && (
         <div
           className={`absolute z-10 pointer-events-none ${
-            bubbleSource === "self" ? selfBubblePos : reactionBubblePos
+            bubbleSource === "self"
+              ? selfBubblePos
+              : bubbleSource === "reaction"
+                ? reactionBubblePos
+                : idleBubblePos
           }`}
         >
-          <ThoughtBubble width={140}>{thought}</ThoughtBubble>
+          <ThoughtBubble width={140}>{thought?.text}</ThoughtBubble>
         </div>
       )}
 
@@ -191,6 +296,7 @@ export default function PandaIcon({
         draggable={false}
         onMouseEnter={handleSelfEnter}
         onMouseLeave={handleSelfLeave}
+        onClick={handlePandaClick}
         style={{ width: size, height: "auto" }}
         className="select-none cursor-pointer object-contain"
       />
