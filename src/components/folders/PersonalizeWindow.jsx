@@ -69,7 +69,7 @@ const PersonalizeWindow = ({ onClose }) => {
                 <div
                   className="w-full aspect-square rounded-sm border-2 bg-cover bg-center"
                   style={{
-                    backgroundImage: `url(${b.preview})`,
+                    backgroundImage: `url(${b.thumb})`,
                     ...swatchBorder(draft.backgroundId === b.id)
                   }}
                 />
