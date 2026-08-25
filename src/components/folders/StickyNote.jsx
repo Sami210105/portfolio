@@ -12,7 +12,7 @@ const DEFAULT_ITEMS = [
 
 const IMG_NATURAL_WIDTH = 881;
 const IMG_NATURAL_HEIGHT = 902;
-// ─────────────────────────────────────────────────────────────
+
 
 function Checkbox({ checked }) {
   return (

@@ -3,6 +3,7 @@ export const BACKGROUNDS = [
     id: "grid",
     name: "Beige Grid",
     type: "component",
+    thumb: "/backgrounds/preview-grid.jpg",
     preview: "/backgrounds/preview-grid.png",
     colors: {
       headerBg: "#573c27",
@@ -28,6 +29,7 @@ export const BACKGROUNDS = [
     id: "purple-night",
     name: "Purple Night",
     type: "image",
+    thumb: "/backgrounds/purple-night.jpg",
     preview: "/backgrounds/purple-night.png",
     image: "/backgrounds/purple-night.png",
     colors: {
@@ -54,6 +56,7 @@ export const BACKGROUNDS = [
     id: "sunny-meadow",
     name: "Sunny Meadow",
     type: "image",
+    thumb: "/backgrounds/ghibli-bg.jpg",
     preview: "/backgrounds/ghibli-bg.png",
     image: "/backgrounds/ghibli-bg.png",
     colors: {
@@ -80,6 +83,7 @@ export const BACKGROUNDS = [
     id: "rainy-day",
     name: "Rainy Day",
     type: "image",
+    thumb: "/backgrounds/rainy-day.jpg",
     preview: "/backgrounds/rainy-day.png",
     image: "/backgrounds/rainy-day.png",
     colors: {
@@ -106,6 +110,7 @@ export const BACKGROUNDS = [
     id: "cozy-bookstore",
     name: "Cozy Bookstore",
     type: "image",
+    thumb: "/backgrounds/book-store.jpg",
     preview: "/backgrounds/book-store.png",
     image: "/backgrounds/book-store.png",
     colors: {
@@ -132,6 +137,7 @@ export const BACKGROUNDS = [
     id: "paris-in-bloom",
     name: "Paris in Bloom",
     type: "image",
+    thumb: "/backgrounds/paris-in-bloom.jpg",
     preview: "/backgrounds/paris-in-bloom.png",
     image: "/backgrounds/paris-in-bloom.png",
     colors: {
