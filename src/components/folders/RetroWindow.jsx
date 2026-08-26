@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { playSound } from "../../utils/sound";
+import { SOUNDS } from "../../utils/sounds";
 
 const RetroWindow = ({
   title,
@@ -19,6 +21,10 @@ const RetroWindow = ({
   const offset = useRef({ x: 0, y: 0 });
   const resizeStart = useRef({ x: 0, y: 0, width: 0, height: 0 });
   const windowRef = useRef(null);
+
+  useEffect(() => {
+    playSound(SOUNDS.windowOpen);
+  }, []);
 
   useEffect(() => {
     if (disableCenter || !windowRef.current) return;
@@ -75,6 +81,11 @@ const RetroWindow = ({
     };
   }, [handleMouseMove, handleMouseUp]);
 
+  const handleClose = () => {
+    playSound(SOUNDS.windowClose);
+    onClose();
+  };
+
   return (
     <div ref={windowRef} className="fixed z-[100] font-mono" style={{ left: pos.x, top: pos.y, width: size.width, height: minimized ? "auto" : size.height ?? "auto" }}>
       <div className="relative h-full flex flex-col border-t-2 border-l-2 border-[var(--window-border-dark)] border-b-2 border-r-2 border-b-[var(--window-border-light)] border-r-[var(--window-border-light)]">
@@ -84,7 +95,7 @@ const RetroWindow = ({
           </div>
           <div className="flex gap-1">
             <button onClick={(e) => { e.stopPropagation(); setMinimized((m) => !m); }} className="w-5 h-5 bg-[var(--window-header-bg)] text-[var(--window-header-text)] text-[11px] font-bold flex items-center justify-center border-t-2 border-l-2 border-[var(--window-border-light)] border-b-2 border-r-2 border-[var(--window-border-dark)] active:border-t-[var(--window-border-dark)] active:border-l-[var(--window-border-dark)] active:border-b-[var(--window-border-light)] active:border-r-[var(--window-border-light)]">_</button>
-            <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="w-5 h-5 bg-[var(--window-header-bg)] text-[var(--window-header-text)] text-[11px] font-bold flex items-center justify-center border-t-2 border-l-2 border-[var(--window-border-light)] border-b-2 border-r-2 border-[var(--window-border-dark)] active:border-t-[var(--window-border-dark)] active:border-l-[var(--window-border-dark)] active:border-b-[var(--window-border-light)] active:border-r-[var(--window-border-light)]">✕</button>
+            <button onClick={(e) => { e.stopPropagation(); handleClose(); }} className="w-5 h-5 bg-[var(--window-header-bg)] text-[var(--window-header-text)] text-[11px] font-bold flex items-center justify-center border-t-2 border-l-2 border-[var(--window-border-light)] border-b-2 border-r-2 border-[var(--window-border-dark)] active:border-t-[var(--window-border-dark)] active:border-l-[var(--window-border-dark)] active:border-b-[var(--window-border-light)] active:border-r-[var(--window-border-light)]">✕</button>
           </div>
         </div>
         {!minimized && (
