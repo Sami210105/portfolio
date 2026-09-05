@@ -1,6 +1,6 @@
 const cache = {};
 
-export const playSound = (src, volume = 0.5) => {
+export const playSound = (src, volume = 0.1) => {
   if (!cache[src]) {
     cache[src] = new Audio(src);
   }

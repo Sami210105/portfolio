@@ -17,16 +17,16 @@ export default function ProjectFace({ project }) {
       </div>
 
       {/* RIGHT CONTENT */}
-      <div className="min-h-0 flex flex-col justify-center items-center gap-2 border-l-2 border-dashed border-[#9b6b53]/40 pl-2 ml-16">
+      <div className="min-h-0 flex flex-col justify-center items-center gap-2 border-l-2 border-dashed border-[--window-text-secondary] pl-2 ml-16">
 
         {/* TITLE */}
         <div className="flex flex-col items-center gap-1 text-center">
-          <h2 className="text-xl font-bold text-[#351303]">
+          <h2 className="text-xl font-bold text-[--window-body-text]">
             {project.title}
           </h2>
 
           {project.tag && (
-            <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 border border-[#c05754] text-[#c05754] font-bold">
+            <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 border border-[--window-accent] text-[--window-accent] font-bold">
               {project.tag}
             </span>
           )}
@@ -58,7 +58,7 @@ export default function ProjectFace({ project }) {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] px-2 py-0.5 bg-[#573c27] text-[#e2c7aa] border border-black"
+              className="text-[10px] px-2 py-0.5 bg-[var(--window-button-bg)] text-[var(--window-button-text)] border border-black"
             >
               {t}
             </span>
@@ -71,7 +71,7 @@ export default function ProjectFace({ project }) {
             href={project.github}
             target="_blank"
             rel="noreferrer"
-            className="text-xs font-bold px-3 py-1.5 border-2 border-black bg-[#e2c7aa] text-[#351303] hover:bg-[#d6b892] transition-colors"
+            className="text-xs font-bold px-3 py-1.5 border-2 border-black bg-[var(--window-accent)] text-[var(--window-button-text)] hover:bg-[var(--window-button-bg)] transition-colors"
           >
             GitHub
           </a>
@@ -80,7 +80,7 @@ export default function ProjectFace({ project }) {
             href={project.live}
             target="_blank"
             rel="noreferrer"
-            className="text-xs font-bold px-3 py-1.5 border-2 border-black bg-[#351303] text-[#e2c7aa] hover:bg-[#573c27] transition-colors"
+            className="text-xs font-bold px-3 py-1.5 border-2 border-black bg-[var(--window-accent)] text-[var(--window-button-text)] hover:bg-[var(--window-button-bg)] transition-colors"
           >
             Live demo
           </a>

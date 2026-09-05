@@ -103,7 +103,7 @@ export default function ProjectsPage() {
                   className="absolute inset-0"
                 >
                   {/* front face */}
-                  <div style={{ backfaceVisibility: "hidden" }} className="absolute inset-0 bg-[var(--window-body-bg)] border-2 border-[var(--window-border-dark)] shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden">
+                  <div style={{ backfaceVisibility: "hidden" }} className="absolute inset-0 bg-white border-2 border-[var(--window-border-dark)] shadow-[6px_6px_0_rgba(0,0,0,0.25)] overflow-hidden">
                     <div
                       className="absolute inset-0 pointer-events-none"
                       style={{
