@@ -7,11 +7,13 @@ const Tool = ({ src, alt }) => (
       <img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className="w-12 h-12 object-contain"
       />
     </div>
 
-    <span className="text-[10px] font-mono text-[var(--window-header-text)] text-center">
+    <span className="text-[10px] font-mono text-[var(--window-body-text)] text-center">
       {alt}
     </span>
   </div>
@@ -25,7 +27,7 @@ const Tools = ({ onClose }) => {
       defaultPos={{ x: 100, y: 100 }}
     >
       {/* Intro */}
-      <h1 className="text-sm font-bold text-[var(--window-header-text)] ml-2 mt-1">
+      <h1 className="text-sm font-bold text-[var(--window-body-text)] ml-2 mt-1">
         Weapons of choice! The stack behind my work.
       </h1>
 
@@ -33,7 +35,7 @@ const Tools = ({ onClose }) => {
 
         {/* Frontend */}
         <div>
-          <h3 className="text-md font-bold mb-3 text-[var(--window-header-text)]">
+          <h3 className="text-md font-bold mb-3 text-[var(--window-body-text)]">
             Frontend
           </h3>
 
@@ -48,7 +50,7 @@ const Tools = ({ onClose }) => {
 
         {/* Backend & Database */}
         <div>
-          <h3 className="text-md font-bold mb-3 text-[var(--window-header-text)]">
+          <h3 className="text-md font-bold mb-3 text-[var(--window-body-text)]">
             Backend & Database
           </h3>
 
@@ -62,7 +64,7 @@ const Tools = ({ onClose }) => {
 
         {/* Tools & Platforms */}
         <div>
-          <h3 className="text-md font-bold mb-3 text-[var(--window-header-text)]">
+          <h3 className="text-md font-bold mb-3 text-[var(--window-body-text)]">
             Tools & Platforms
           </h3>
 

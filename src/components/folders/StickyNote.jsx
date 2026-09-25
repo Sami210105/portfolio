@@ -97,6 +97,7 @@ export default function StickyNote({
       <img
         src="/sticky-note.png"
         alt=""
+        decoding="async"
         draggable={false}
         className="absolute inset-0 w-full h-full object-contain pointer-events-none"
       />

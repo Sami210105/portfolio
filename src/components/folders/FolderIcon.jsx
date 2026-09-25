@@ -7,6 +7,7 @@ export default function FolderIcon({ icon, label, onClick }) {
       <img
         src={icon}
         alt={label}
+        decoding="async"
         className="
           w-18 h-18 object-contain
           drop-shadow-[2px_2px_2px_rgba(0,0,0,0.3)]

@@ -35,9 +35,14 @@ export default function App() {
       {bg.type === "component" ? (
         <Square squareSize={32} speed={0.15} direction="diagonal" />
       ) : (
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${bg.image})` }}
+        <img
+          src={bg.image}
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
         />
       )}
 

@@ -12,6 +12,9 @@ const AboutMe = ({ onClose }) => {
         <div className="flex items-center justify-center">
           <img
             src="/me.jpeg"
+            alt="Samidha"
+            loading="lazy"
+            decoding="async"
             className="border-2 border-[var(--window-border-dark)] w-[400px] h-auto"
           />
         </div>

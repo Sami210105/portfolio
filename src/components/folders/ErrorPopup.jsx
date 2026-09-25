@@ -10,7 +10,7 @@ const ErrorPopup = ({ achievement, onNext, onClose, isLast, defaultPos }) => {
     >
       <div className="p-5 flex flex-col gap-4">
         <div className="flex items-start gap-3">
-          <img src="/error.png" className="w-10" />
+          <img src="/error.png" alt="" decoding="async" className="w-10" />
           <div>
             <h2 className="text-sm font-bold text-[var(--window-body-text)]">
               {achievement.title}

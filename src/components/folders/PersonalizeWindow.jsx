@@ -67,12 +67,17 @@ const PersonalizeWindow = ({ onClose }) => {
 
                 {/* Background preview */}
                 <div
-                  className="w-full aspect-square rounded-sm border-2 bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${b.thumb})`,
-                    ...swatchBorder(draft.backgroundId === b.id)
-                  }}
-                />
+                  className="w-full aspect-square rounded-sm border-2 overflow-hidden"
+                  style={swatchBorder(draft.backgroundId === b.id)}
+                >
+                  <img
+                    src={b.thumb}
+                    alt={b.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
                 {/* Background name */}
                 <span className="text-[11px]">
