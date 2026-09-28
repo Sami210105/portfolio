@@ -79,6 +79,7 @@ function ThoughtBubble({ children, width = 140 }) {
 export default function PandaIcon({
   size = 64,
   fps = 24,
+  hideBubble = false,
   reactTo = null,
   reactions = {},
   selfBubblePos = "-top-12 -right-18",
@@ -275,7 +276,7 @@ export default function PandaIcon({
 
   return (
     <div className="relative inline-block">
-      {showBubble && (
+      {showBubble && !hideBubble && (
         <div
           className={`absolute z-10 pointer-events-none ${
             bubbleSource === "self"

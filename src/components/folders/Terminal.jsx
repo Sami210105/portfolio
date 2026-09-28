@@ -64,7 +64,7 @@ const Terminal = ({ onOpenWindow, onClose, defaultPos }) => {
         break;
 
       case "ls":
-        output = ["projects/ /resume achievements/ music/ toolset/"];
+        output = ["projects/ resume/ achievements/ music/ toolset/"];
         break;
 
       case "about":
