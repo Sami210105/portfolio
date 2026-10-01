@@ -18,16 +18,6 @@ const THOUGHTS = [
     action: "connect",
   },
   {
-    text: "Click on the bubble to see what happens!",
-    priority: 5,
-    action: null,
-  },
-  {
-    text: "welcome to my little corner of the internet",
-    priority: 7,
-    action: null,
-  },
-  {
     text: "hi hi :)",
     priority: 10,
     action: null,
@@ -39,7 +29,7 @@ const THOUGHTS = [
   },
   {
     text: "you found me!",
-    priority: 4,
+    priority: 10,
     action: "null",
   },
 ];
