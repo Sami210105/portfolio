@@ -12,6 +12,7 @@ import Tools from "../folders/Tools";
 import Terminal from "../folders/Terminal";
 import ContextMenu from "../folders/ContextMenu";
 import PersonalizeWindow from "../folders/PersonalizeWindow";
+import PandaLoader from "../folders/PandaLoader";
 
 import folderAbout from "../../assets/folder-about.png";
 import folderMusic from "../../assets/folder-music.png";

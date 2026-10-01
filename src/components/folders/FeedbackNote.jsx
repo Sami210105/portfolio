@@ -92,18 +92,23 @@ function SmileyButton({ mood, selected, onSelect }) {
 
 export default function FeedbackNote() {
   const [rating, setRating] = useState(null);
+  const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
   const submit = async () => {
-    if (!rating) return;
+    if (!rating || status === "sending") return;
     setStatus("sending");
     try {
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          rating: MOODS[rating - 1].label,
+          // variable names must match the {{placeholders}} in the EmailJS template
+          title: "Portfolio Feedback",
+          name: name.trim() || "Anonymous",
+          time: new Date().toLocaleString(),
+          ratings: MOODS[rating - 1].label,
           message: message.trim() || "(no message)",
         },
         { publicKey: EMAILJS_PUBLIC_KEY },
@@ -117,6 +122,7 @@ export default function FeedbackNote() {
 
   const reset = () => {
     setRating(null);
+    setName("");
     setMessage("");
     setStatus("idle");
   };
@@ -136,7 +142,7 @@ export default function FeedbackNote() {
   }
 
   return (
-    <div className="bg-[var(--window-body-bg)] p-4">
+    <div className="bg-[var(--window-body-bg)] p-2">
       <h2 className="text-lg font-extrabold text-[var(--window-body-text)]">Feedback</h2>
       <p className="text-sm text-[var(--window-text-secondary)] mt-1">So, did I do a good job?</p>
 
@@ -146,15 +152,25 @@ export default function FeedbackNote() {
         ))}
       </div>
 
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Your name (optional)"
+        maxLength={40}
+        className="mt-6 w-full bg-[var(--window-panel-bg)] border-2 border-[var(--window-border-dark)] rounded-lg px-2.5 h-10 text-sm text-[var(--window-header-text)] placeholder-[var(--window-text-secondary)] outline-none"
+      />
+
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Tell me in words..."
+        placeholder="Be honest... type your verdict here!"
         rows={3}
-        className="mt-6 w-full resize-none bg-[var(--window-panel-bg)] border-2 border-[var(--window-border-dark)] rounded-lg p-2.5 text-sm text-[var(--window-header-text)] placeholder-[var(--window-text-secondary)] outline-none"
+        maxLength={500}
+        className="mt-3 w-full h-[150px] resize-none bg-[var(--window-panel-bg)] border-2 border-[var(--window-border-dark)] rounded-lg p-2.5 text-sm text-[var(--window-header-text)] placeholder-[var(--window-text-secondary)] outline-none"
       />
 
-      <div className="flex items-center justify-center mt-2">
+      <div className="flex items-center justify-between gap-3 mt-2">
         <span className="text-[11px] text-[var(--window-text-secondary)]">
           {status === "error" ? "Something went wrong — try again?" : "\u00A0"}
         </span>
