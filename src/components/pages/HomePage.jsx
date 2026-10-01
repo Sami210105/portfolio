@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import FolderIcon from "../folders/FolderIcon";
 import Panda from "../folders/Panda";
 import StickyNote from "../folders/StickyNote";
+import Feedback from "../folders/Feedback";
 
 import AboutMe from "../folders/Aboutme";
 import Connect from "../folders/Connect";
@@ -17,6 +18,7 @@ import folderMusic from "../../assets/folder-music.png";
 import folderConnect from "../../assets/folder-connect.png";
 import folderResume from "../../assets/folder-resume.png";
 import folderTools from "../../assets/folder-resume.png";
+import folderFeedback from "../../assets/folder-about.png";
 
 const MOBILE_BREAKPOINT = 640;
 
@@ -32,6 +34,12 @@ const folders = [
     label: "My Playlist",
     icon: folderMusic,
     pos: { top: "220px", left: "60px" },
+  },
+  {
+    id: "feedback",
+    label: "Feedback",
+    icon: folderFeedback,
+    pos: { top: "360px", left: "60px" },
   },
   {
     id: "connect",
@@ -62,6 +70,7 @@ const MOBILE_APPS = [
   { id: "resume", label: "Resume", subtitle: "Download CV", fileCount: 1, subfolderCount: 0, emoji: "📄", color: "bg-amber-300 text-amber-900" },
   { id: "tools", label: "Tools", subtitle: "My tech stack", fileCount: 1, subfolderCount: 4, emoji: "🛠️", color: "bg-violet-300 text-violet-900" },
   { id: "terminal", label: "Terminal", subtitle: "Run commands", fileCount: 1, subfolderCount: 0, emoji: "💻", color: "bg-rose-300 text-rose-900" },
+  { id: "feedback", label: "Feedback", subtitle: "Rate & message me", fileCount: 1, subfolderCount: 0, emoji: "💌", color: "bg-pink-300 text-pink-900" },
 ];
 
 const PANDA_REACTIONS = {
@@ -180,6 +189,8 @@ const HomePage = ({ setActivePage }) => {
         return <Resume onClose={close} />;
       case "tools":
         return <Tools onClose={close} />;
+      case "feedback":
+        return <Feedback onClose={close} />;
       case "terminal":
         return (
           <Terminal
@@ -291,6 +302,7 @@ const HomePage = ({ setActivePage }) => {
               </p>
             )}
           </div>
+
           </div>
         </div>
       )}

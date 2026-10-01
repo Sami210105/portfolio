@@ -15,6 +15,9 @@ function useIsMobile() {
   return width < MOBILE_BREAKPOINT;
 }
 
+// Only 3 filters: All + these two. Every achievement below must use one of them.
+const FILTERS = ["All", "Hackathons", "Experience"];
+
 // TODO: swap in your own Overview / Key Contributions / Impact copy per
 // achievement below -- these are draft expansions of your one-line
 // descriptions so the detail sheet has something real to show for now.
@@ -43,7 +46,7 @@ const ACHIEVEMENTS = [
     title: "Co-Head Documentation",
     subtitle: "Documentation Team",
     desc: "Led documentation team & streamlined workflows",
-    category: "Positions",
+    category: "Experience",
     tags: ["Leadership", "Process"],
     icon: "clipboard",
     color: "bg-emerald-200 text-emerald-700",
@@ -82,7 +85,7 @@ const ACHIEVEMENTS = [
     title: "MERN Intern",
     subtitle: "Full-Stack Internship",
     desc: "Built real-world full-stack features using React & Node",
-    category: "Positions",
+    category: "Experience",
     tags: ["MERN", "Full Stack"],
     icon: "code",
     color: "bg-emerald-200 text-emerald-700",
@@ -101,7 +104,7 @@ const ACHIEVEMENTS = [
     title: "NSS Volunteer",
     subtitle: "Fort Rajgad Conservation",
     desc: "Participated in cleanliness drives and blood donation campaigns",
-    category: "Volunteering",
+    category: "Experience",
     tags: ["Community Service", "Social Impact"],
     icon: "heart",
     color: "bg-amber-200 text-amber-700",
@@ -120,7 +123,7 @@ const ACHIEVEMENTS = [
     title: "Tech Exposure",
     subtitle: "GDSC WOW & RYLA",
     desc: "Attended tech talks and workshops on emerging technologies and leadership",
-    category: "Learning",
+    category: "Experience",
     tags: ["Learning", "Tech Talks"],
     icon: "star",
     color: "bg-violet-200 text-violet-700",
@@ -190,57 +193,22 @@ function AchievementIcon({ name, className }) {
   );
 }
 
-function FilterChips({ categories, active, onSelect }) {
-  const visible = categories.slice(0, 4);
-  const overflow = categories.slice(4);
-  const [showMore, setShowMore] = useState(false);
-
+function FilterChips({ filters, active, onSelect }) {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-1">
-      {visible.map((c) => (
+    <div className="flex items-center gap-2">
+      {filters.map((f) => (
         <button
-          key={c}
-          onClick={() => onSelect(c)}
-          className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-mono border-2 border-[var(--window-border-dark)] ${
-            active === c
+          key={f}
+          onClick={() => onSelect(f)}
+          className={`px-4 py-1.5 rounded-full text-sm font-mono border-2 border-[var(--window-border-dark)] ${
+            active === f
               ? "bg-[var(--window-active-bg)] text-[var(--window-active-text)]"
               : "bg-[var(--window-panel-bg)] text-[var(--window-body-text)]"
           }`}
         >
-          {c}
+          {f}
         </button>
       ))}
-
-      {overflow.length > 0 && (
-        <div className="relative shrink-0">
-          <button
-            onClick={() => setShowMore((s) => !s)}
-            className={`px-3 py-1.5 rounded-full text-sm font-mono border-2 border-[var(--window-border-dark)] ${
-              overflow.includes(active)
-                ? "bg-[var(--window-active-bg)] text-[var(--window-active-text)]"
-                : "bg-[var(--window-panel-bg)] text-[var(--window-body-text)]"
-            }`}
-          >
-            {overflow.includes(active) ? active : "More"} ▾
-          </button>
-          {showMore && (
-            <div className="absolute top-full mt-1 right-0 bg-[var(--window-panel-bg)] border-2 border-[var(--window-border-dark)] rounded-xl overflow-hidden z-10 min-w-[140px]">
-              {overflow.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => {
-                    onSelect(c);
-                    setShowMore(false);
-                  }}
-                  className="block w-full text-left px-4 py-2 text-sm font-mono text-[var(--window-body-text)]"
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }
@@ -393,11 +361,6 @@ function MobileAchievements() {
   const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState(null);
 
-  const categories = useMemo(() => {
-    const set = new Set(ACHIEVEMENTS.map((a) => a.category));
-    return ["All", ...Array.from(set)];
-  }, []);
-
   const filtered = useMemo(
     () =>
       category === "All"
@@ -423,14 +386,14 @@ function MobileAchievements() {
 
         <div className="mt-4">
           <FilterChips
-            categories={categories}
+            filters={FILTERS}
             active={category}
             onSelect={setCategory}
           />
         </div>
       </div>
 
-      <div className="px-4 mt-2">
+      <div className="px-4 mt-4">
         {filtered.map((a) => (
           <AchievementCard key={a.id} achievement={a} onOpen={setSelected} />
         ))}

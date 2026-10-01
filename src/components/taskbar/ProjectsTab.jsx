@@ -8,7 +8,6 @@ export default function ProjectsTab({ activePage, setActivePage }) {
           ? 'text-[var(--window-header-text)] border-[var(--window-header-text)] shadow-[inset_0_2px_5px_rgba(0,0,0,0.35)]'
           : 'text-[var(--window-header-text)] border-transparent'}`}
     >
-      <span aria-hidden="true">🗂️</span>
       <span className="hidden sm:inline">Projects</span>
     </button>
   );

@@ -4,7 +4,9 @@ import ProjectFace from "../folders/projects/ProjectFace";
 import RingBinding from "../folders/projects/RingBinding";
 
 const TASKBAR_HEIGHT = 64;
-const MOBILE_BREAKPOINT = 640;
+// Notebook (max 900px) + side tabs + gap needs ~1000px to fit, so anything
+// narrower gets the card layout.
+const MOBILE_BREAKPOINT = 1000;
 
 function useIsMobile() {
   const [width, setWidth] = useState(
@@ -90,9 +92,9 @@ function ProjectCard({ project, index }) {
   };
 
   return (
-    <div className="relative mt-5 first:mt-1">
+    <div className="relative">
       <FolderTab colorClass={accent} />
-      <div className="relative bg-white border-2 border-[var(--window-border-dark)] rounded-2xl overflow-hidden shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+      <div className="relative h-full bg-white border-2 border-[var(--window-border-dark)] rounded-2xl overflow-hidden shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
         <div className="h-36 w-full bg-[var(--window-panel-bg)] flex items-center justify-center overflow-hidden">
           {image ? (
             <img src={image} alt={title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
@@ -179,7 +181,10 @@ function MobileProjects() {
   }, [query, category]);
 
   return (
-    <div className="min-h-screen" style={{ paddingBottom: "calc(4rem + env(safe-area-inset-bottom, 0px) + 24px)" }}>
+    <div
+      className="min-h-screen w-full max-w-4xl mx-auto"
+      style={{ paddingBottom: "calc(4rem + env(safe-area-inset-bottom, 0px) + 24px)" }}
+    >
       <div className="px-4" style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 20px)" }}>
         <h1 className="text-3xl font-extrabold text-[var(--window-body-text)]">Projects</h1>
 
@@ -241,13 +246,14 @@ function MobileProjects() {
         </div>
       </div>
 
-      <div className="px-4 mt-4">
+      {/* 1 column on phones, 2 columns on wider (tablet / small laptop) widths */}
+      <div className="px-4 pt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-7">
         {filtered.map((project, i) => (
           <ProjectCard key={pick(project, ["id"], i)} project={project} index={i} />
         ))}
 
         {filtered.length === 0 && (
-          <p className="text-center text-sm text-[var(--window-text-secondary)] py-10">
+          <p className="col-span-full text-center text-sm text-[var(--window-text-secondary)] py-10">
             No projects match "{query}"
           </p>
         )}
