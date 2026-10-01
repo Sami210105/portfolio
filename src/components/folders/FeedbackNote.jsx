@@ -71,7 +71,9 @@ function SmileyButton({ mood, selected, onSelect }) {
       aria-label={mood.label}
       aria-pressed={selected}
       className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0 border-2 border-[var(--window-border-dark)] transition-transform ${mood.color} ${
-        selected ? "scale-110 shadow-[2px_2px_0px_rgba(0,0,0,0.35)]" : "opacity-70"
+        selected
+          ? "scale-110 shadow-[2px_2px_0px_rgba(0,0,0,0.35)]"
+          : "opacity-70"
       }`}
     >
       <svg
@@ -130,7 +132,9 @@ export default function FeedbackNote() {
   if (status === "sent") {
     return (
       <div className="bg-[var(--window-body-bg)] border-2 border-[var(--window-border-dark)] rounded-2xl p-4 shadow-[4px_4px_0px_rgba(0,0,0,0.25)] text-center">
-        <p className="text-base font-bold text-[var(--window-body-text)]">Thanks for the feedback! 💌</p>
+        <p className="text-base font-bold text-[var(--window-body-text)]">
+          Thanks for the feedback! 💌
+        </p>
         <button
           onClick={reset}
           className="mt-2 text-xs font-mono text-[var(--window-text-secondary)] underline"
@@ -143,12 +147,21 @@ export default function FeedbackNote() {
 
   return (
     <div className="bg-[var(--window-body-bg)] p-2">
-      <h2 className="text-lg font-extrabold text-[var(--window-body-text)]">Feedback</h2>
-      <p className="text-sm text-[var(--window-text-secondary)] mt-1">So, did I do a good job?</p>
+      <h2 className="text-lg font-extrabold text-[var(--window-body-text)]">
+        Feedback
+      </h2>
+      <p className="text-sm text-[var(--window-text-secondary)] mt-1">
+        So, did I do a good job?
+      </p>
 
       <div className="flex items-center justify-between gap-2 mt-3">
         {MOODS.map((m) => (
-          <SmileyButton key={m.value} mood={m} selected={rating === m.value} onSelect={setRating} />
+          <SmileyButton
+            key={m.value}
+            mood={m}
+            selected={rating === m.value}
+            onSelect={setRating}
+          />
         ))}
       </div>
 
@@ -158,7 +171,7 @@ export default function FeedbackNote() {
         onChange={(e) => setName(e.target.value)}
         placeholder="Your name (optional)"
         maxLength={40}
-        className="mt-6 w-full bg-[var(--window-panel-bg)] border-2 border-[var(--window-border-dark)] rounded-lg px-2.5 h-10 text-sm text-[var(--window-header-text)] placeholder-[var(--window-text-secondary)] outline-none"
+        className="mt-6 w-full bg-[var(--window-body-bg)] border-2 border-[var(--window-border-dark)] rounded-lg px-2.5 h-10 text-sm text-[var(--window-body-text)] placeholder-[var(--window-text-secondary)] placeholder:opacity-70 outline-none shadow-[inset_2px_2px_0px_rgba(0,0,0,0.12)]"
       />
 
       <textarea
@@ -167,7 +180,7 @@ export default function FeedbackNote() {
         placeholder="Be honest... type your verdict here!"
         rows={3}
         maxLength={500}
-        className="mt-3 w-full h-[150px] resize-none bg-[var(--window-panel-bg)] border-2 border-[var(--window-border-dark)] rounded-lg p-2.5 text-sm text-[var(--window-header-text)] placeholder-[var(--window-text-secondary)] outline-none"
+        className="mt-3 w-full h-[150px] resize-none bg-[var(--window-body-bg)] border-2 border-[var(--window-border-dark)] rounded-lg p-2.5 text-sm text-[var(--window-body-text)] placeholder-[var(--window-text-secondary)] placeholder:opacity-70 outline-none shadow-[inset_2px_2px_0px_rgba(0,0,0,0.12)]"
       />
 
       <div className="flex items-center justify-between gap-3 mt-2">
@@ -180,7 +193,15 @@ export default function FeedbackNote() {
           aria-label="Send feedback"
           className="w-10 h-10 shrink-0 flex items-center justify-center rounded-full bg-[var(--window-button-bg)] text-[var(--window-button-text)] border-2 border-[var(--window-border-dark)] disabled:opacity-40"
         >
-          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            viewBox="0 0 24 24"
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="m3 11 18-7-7 18-2.5-7.5L3 11Z" />
           </svg>
         </button>
