@@ -15,9 +15,9 @@ import PersonalizeWindow from "../folders/PersonalizeWindow";
 
 import folderAbout from "../../assets/folder-about.png";
 import folderMusic from "../../assets/folder-music.png";
-import folderConnect from "../../assets/folder-connect.png";
-import folderResume from "../../assets/folder-resume.png";
-import folderTools from "../../assets/folder-resume.png";
+import folderConnect from "../../assets/folder-about.png";
+import folderResume from "../../assets/folder-about.png";
+import folderTools from "../../assets/folder-about.png";
 import folderFeedback from "../../assets/folder-about.png";
 
 const MOBILE_BREAKPOINT = 640;
@@ -86,6 +86,12 @@ const PANDA_REACTIONS = {
     "ooh bangers only",
     "currently romanticizing my life",
     "coding playlist = activated",
+  ],
+
+  feedback: [
+    "psst, tell me how i did :)",
+    "click me, leave a review!",
+    "roast me gently, please",
   ],
 
   connect: [
